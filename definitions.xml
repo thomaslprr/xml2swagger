@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<objects >
+<global>
+<objects>
 	
 	<object>
 		<name>ColorRestBeans</name>
@@ -34,3 +35,140 @@
 	
 
 </objects>
+
+<rest>
+	<swagger-version>2.0</swagger-version>
+	<info>
+		<description>The Application</description>
+		<version>1.0.0</version>
+		<title>Sample REST Application</title>
+		<contact-name>users@cxf.apache.org</contact-name>
+		<licence-name>Apache 2.0 License</licence-name>
+		<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
+	</info>
+	<basePath>/slc_web_balder/ws/1.0</basePath>
+	<tags>
+		<tag-name>color v2</tag-name>
+	</tags>
+	
+	<paths>
+		<path>
+			<name>/color</name>
+			<methods>
+				<method>
+					<type>get</type>
+					<tags>
+						<tag-name>color v2</tag-name>
+					</tags>
+					<operation-id>search</operation-id>
+					<produces>
+						<produce-type>application/json</produce-type>
+					</produces>
+					<parameters>
+					
+					</parameters>
+					<responses>
+						<default>
+							<description>successful operation</description>
+						</default>
+					</responses>
+				</method>
+				
+				<method>
+					<type>post</type>
+					<tags>
+						<tag-name>color v2</tag-name>
+					</tags>
+					<operation-id>add</operation-id>
+					<produces>
+						<produce-type>application/json</produce-type>
+					</produces>
+					<parameters>
+						<parameter>
+							<in>body</in>
+							<name>body</name>
+							<required>false</required>
+							<schema>
+								<ref>ColorRestBeans</ref>
+							</schema>
+						
+						</parameter>
+					
+					</parameters>
+					<responses>
+						<default>
+							<description>successful operation</description>
+							
+						</default>
+					</responses>
+				
+				</method>
+			
+			</methods>
+			
+			
+		</path>
+		
+		
+		<path>
+			<name>/color/{id}</name>
+			<methods>
+				<method>
+					<type>get</type>
+					<tags>
+						<tag-name>color v2</tag-name>
+					</tags>
+					<operation-id>search</operation-id>
+					<produces>
+						<produce-type>application/json</produce-type>
+					</produces>
+					<parameters>
+						<parameter>
+							<name>id</name>
+							<in>path</in>
+							<required>true</required>
+							<type>integer</type>
+							<format>int64</format>
+						</parameter>
+					
+					</parameters>
+					<responses>
+						<default>
+							<description>successful operation</description>
+						</default>
+					</responses>
+				</method>
+				
+				<method>
+					<type>put</type>
+					<tags>
+						<tag-name>color v2</tag-name>
+					</tags>
+					<operation-id>update</operation-id>
+					<produces>
+						<produce-type>application/json</produce-type>
+					</produces>
+					<parameters>
+						<parameter>
+							<in>body</in>
+							<name>body</name>
+							<required>false</required>
+							<schema>
+								<ref>ColorRestBeans</ref>
+							</schema>
+						
+						</parameter>
+					
+					</parameters>
+					<responses>
+						<default>
+							<description>successful operation</description>
+						</default>
+					</responses>
+				</method>
+			</methods>
+		</path>
+	</paths>
+</rest>
+
+</global>
