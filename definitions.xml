@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects >
+	
+	<object>
+		<name>ColorRestBeans</name>
+		<type>object</type>
+		<properties>
+			<property>
+				<name>id</name>
+				<type>integer</type>
+				<format>int64</format>
+			</property>
+			
+			<property>
+				<name>label</name>
+				<type>string</type>
+				<format></format>
+			</property>
+			
+			<property>
+				<name>type</name>
+				<type>array</type>
+				<format></format>
+				<items>
+					<type>string</type>
+				</items>
+			</property>
+			
+		
+		</properties>
+	
+	</object>
+	
+
+</objects>
