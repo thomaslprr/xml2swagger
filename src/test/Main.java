@@ -5,6 +5,7 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
+import converter.XmlParser;
 import global.Global;
 
 public class Main {
@@ -18,15 +19,11 @@ public class Main {
 			
 			Global global = (Global) unmarshaller.unmarshal(file);
 			
-			//Test for definitions part
-			System.out.println(global.getObjects().getObject().get(0).getName());
-			System.out.println(global.getObjects().getObject().get(0).getProperties().getProperties().get(2).getItems().getType());
-
-			//Test for header part 
 			
-			System.out.println(global.getRest().getInfo().getTitle()+" "+global.getRest().getInfo().getDescription());
+			//Print all the XML 
+			//XmlParser.printXml(global);
 			
-			//Test for path part
+			System.out.println(XmlParser.xmlToSwaggerJson(global).toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

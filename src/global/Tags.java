@@ -1,22 +1,23 @@
-package header;
+package global;
+
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="tags")
-public class TagBeans {
+
+public class Tags {
 	
-	private String tagName;
+	private List<String> tagName;
 
 	@XmlElement(name="tag-name")
-	public String getTagName() {
+	public List<String> getTag() {
 		return tagName;
 	}
 
-	public void setTagName(String tagName) {
+	public void setTag(List<String> tagName) {
 		this.tagName = tagName;
 	}
-	
 	
 	
 	

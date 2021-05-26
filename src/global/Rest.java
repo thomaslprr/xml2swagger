@@ -3,10 +3,10 @@ package global;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import header.InfoBeans;
-import header.TagBeans;
+import paths.Path;
+import paths.Paths;
 
 public class Rest {
 
@@ -14,8 +14,8 @@ public class Rest {
 	private InfoBeans info;
 	private String basePath;
 	
-	private List<TagBeans> tags;
-	//private List<Path> paths;
+	private Tags tags;
+	private Paths paths;
 
 	@XmlElement(name="swagger-version")
 	public String getSwaggerVersion() {
@@ -32,9 +32,17 @@ public class Rest {
 		return basePath;
 	}
 
-	@XmlElement(name="tags")
-	public List<TagBeans> getTags() {
+	public Tags getTags() {
 		return tags;
+	}
+	
+	@XmlElement(name="paths")
+	public Paths getPaths() {
+		return paths;
+	}
+
+	public void setPaths(Paths paths) {
+		this.paths = paths;
 	}
 
 	public void setSwaggerVersion(String swaggerVersion) {
@@ -49,13 +57,9 @@ public class Rest {
 		this.basePath = basePath;
 	}
 
-	public void setTags(List<TagBeans> tags) {
+	public void setTags(Tags tags) {
 		this.tags = tags;
 	}
-	
-	
-	
-	
-	
+
 	
 }
