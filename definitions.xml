@@ -62,6 +62,10 @@
 	</info>
 	<basePath>/slc_web_balder/ws/1.0</basePath>
 	<host>api.example.com</host>
+	<schemes>
+		<scheme>https</scheme>
+		<scheme>http</scheme>
+	</schemes>
 	<tags>
 		<tag>
 			<tag-name>color v2</tag-name>
@@ -91,9 +95,11 @@
 					
 					</parameters>
 					<responses>
-						<default>
+						<response>
+							<name>default</name>
 							<description>successful operation</description>
-						</default>
+						</response>
+						
 					</responses>
 				</method>
 				
@@ -119,10 +125,11 @@
 					
 					</parameters>
 					<responses>
-						<default>
+						<response>
+							<name>default</name>
 							<description>successful operation</description>
-							
-						</default>
+						</response>
+						
 					</responses>
 				
 				</method>
@@ -156,10 +163,13 @@
 					
 					</parameters>
 					<responses>
-						<default>
+						<response>
+							<name>default</name>
 							<description>successful operation</description>
-						</default>
+						</response>
+						
 					</responses>
+					<deprecated>false</deprecated>
 				</method>
 				
 				<method>
@@ -184,9 +194,13 @@
 					
 					</parameters>
 					<responses>
-						<default>
+						<response>
+							<name>default</name>
 							<description>successful operation</description>
-						</default>
+						</response>
+						
+						
+						
 					</responses>
 				</method>
 			</methods>

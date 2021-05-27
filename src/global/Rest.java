@@ -17,6 +17,18 @@ public class Rest {
 	
 	private TagsDetailled tags;
 	private Paths paths;
+	
+	private Schemes schemes;
+	
+	
+
+	public Schemes getSchemes() {
+		return schemes;
+	}
+
+	public void setSchemes(Schemes schemes) {
+		this.schemes = schemes;
+	}
 
 	@XmlElement(name="swagger-version")
 	public String getSwaggerVersion() {

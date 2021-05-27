@@ -1,19 +1,21 @@
 package paths;
 
-import javax.xml.bind.annotation.XmlElement;
+import java.util.List;
+
 
 public class Responses {
 	
-	private Default defaultR;
+	private List<Response> response;
 
-	@XmlElement(name="default")
-	public Default getDefaultR() {
-		return defaultR;
+	public List<Response> getResponse() {
+		return response;
 	}
 
-	public void setDefaultR(Default defaultR) {
-		this.defaultR = defaultR;
+	public void setResponse(List<Response> response) {
+		this.response = response;
 	}
+	
+	
 	
 	
 	

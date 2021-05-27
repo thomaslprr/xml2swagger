@@ -17,6 +17,7 @@ import global.TagsDetailled;
 import paths.Method;
 import paths.Parameter;
 import paths.Path;
+import paths.Response;
 
 public class XmlParser {
 	
@@ -100,7 +101,7 @@ public class XmlParser {
 				
 				System.out.println("      Responses");
 				System.out.println("          Response");
-				System.out.println("             Default: "+m.getResponses().getDefaultR().getDescription());
+				//System.out.println("             Default: "+m.getResponses().getDefaultR().getDescription());
 				
 				System.out.println("\n \n");
 				
@@ -200,8 +201,15 @@ public class XmlParser {
 			}
 			tagsList.put(t);
 		}
-		
 		swaggerJson.put("tags", tagsList);
+		
+		if(global.getRest().getSchemes()!=null) {
+			JSONArray schemesArray = new JSONArray();
+			for(String schema : global.getRest().getSchemes().getScheme()) {
+				schemesArray.put(schema);
+			}
+			swaggerJson.put("schemes", schemesArray);
+		}
 		
 		JSONObject pathsJson = new JSONObject();
 		
@@ -251,11 +259,23 @@ public class XmlParser {
 				}
 				method.put("parameters", parametersJson);
 				
-				JSONObject response = new JSONObject();
-				JSONObject defaultJson = new JSONObject() ;
-				defaultJson.put("description", m.getResponses().getDefaultR().getDescription());
-				response.put("default", defaultJson);
+				if(m.isDeprecated()) {
+					method.put("deprecated", true);
+				}
 				
+				JSONObject response = new JSONObject();
+				for(Response r : m.getResponses().getResponse()) {
+					JSONObject description = new JSONObject() ;
+					description.put("description", r.getDescription());
+					
+					if(r.getSchema()!=null) {
+						JSONObject schemaJson= new JSONObject();
+						schemaJson.put("$ref","#/definitions/"+r.getSchema().getRef() );
+						description.put("schema", schemaJson);
+					}
+					response.put(r.getName(), description);
+				}
+
 				method.put("responses", response);
 				
 				pathJson.put(m.getType(), method);
