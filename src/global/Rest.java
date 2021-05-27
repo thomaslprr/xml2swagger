@@ -13,8 +13,9 @@ public class Rest {
 	private String swaggerVersion;
 	private InfoBeans info;
 	private String basePath;
+	private String host;
 	
-	private Tags tags;
+	private TagsDetailled tags;
 	private Paths paths;
 
 	@XmlElement(name="swagger-version")
@@ -32,7 +33,7 @@ public class Rest {
 		return basePath;
 	}
 
-	public Tags getTags() {
+	public TagsDetailled getTags() {
 		return tags;
 	}
 	
@@ -57,9 +58,18 @@ public class Rest {
 		this.basePath = basePath;
 	}
 
-	public void setTags(Tags tags) {
+	public void setTags(TagsDetailled tags) {
 		this.tags = tags;
 	}
 
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	
 	
 }

@@ -13,8 +13,28 @@ public class InfoBeans {
 	private String contactName;
 	private String licenceName;
 	private String licenceUrl;
+	private String contactEmail;
+	private String termsOfSerivce;
 
-		
+	
+	@XmlElement(name="contact-email")	
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+	
+	@XmlElement(name="terms-of-service")
+	public String getTermsOfSerivce() {
+		return termsOfSerivce;
+	}
+
+	public void setTermsOfSerivce(String termsOfSerivce) {
+		this.termsOfSerivce = termsOfSerivce;
+	}
+
 	@XmlElement(name="description")	
 	public String getDescription() {
 		return description;

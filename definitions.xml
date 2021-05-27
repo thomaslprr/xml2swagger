@@ -7,6 +7,20 @@
 		<name>ColorRestBeans</name>
 		<type>object</type>
 		<properties>
+            <property>
+            	<name>alpha</name>
+            	<format>int32</format>
+            	<type>integer</type>
+            </property>
+            <property>
+            	<name>blue</name>
+            	<format>int32</format>
+            	<type>integer</type>
+            </property>
+            <property>
+            	<name>code</name>
+            	<type>string</type>
+            </property>
 			<property>
 				<name>id</name>
 				<type>integer</type>
@@ -22,7 +36,6 @@
 			<property>
 				<name>type</name>
 				<type>array</type>
-				<format></format>
 				<items>
 					<type>string</type>
 				</items>
@@ -43,12 +56,21 @@
 		<version>1.0.0</version>
 		<title>Sample REST Application</title>
 		<contact-name>users@cxf.apache.org</contact-name>
+		<contact-email>selic@contact.fr</contact-email>
 		<licence-name>Apache 2.0 License</licence-name>
 		<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
 	</info>
 	<basePath>/slc_web_balder/ws/1.0</basePath>
+	<host>api.example.com</host>
 	<tags>
-		<tag-name>color v2</tag-name>
+		<tag>
+			<tag-name>color v2</tag-name>
+			<tag-description>Everything about color</tag-description>
+			<external-docs>
+				<description>Find out more</description>
+				<url>https://en.wikipedia.org/wiki/Color</url>
+			</external-docs>
+		</tag>
 		
 	</tags>
 	
