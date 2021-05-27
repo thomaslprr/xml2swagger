@@ -197,9 +197,15 @@
 						<response>
 							<name>default</name>
 							<description>successful operation</description>
+							<schema>
+								<ref>ColorRestBeans</ref>
+							</schema>
 						</response>
 						
-						
+						<response>
+							<name>404</name>
+							<description>Page not found</description>
+						</response>
 						
 					</responses>
 				</method>
