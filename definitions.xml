@@ -55,8 +55,9 @@
 		<description>The Application</description>
 		<version>1.0.0</version>
 		<title>Sample REST Application</title>
-		<contact-name>users@cxf.apache.org</contact-name>
+		<contact-name>Selic</contact-name>
 		<contact-email>selic@contact.fr</contact-email>
+		<contact-url>http://selic.fr/</contact-url>
 		<licence-name>Apache 2.0 License</licence-name>
 		<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
 	</info>
@@ -65,6 +66,8 @@
 	<schemes>
 		<scheme>https</scheme>
 		<scheme>http</scheme>
+		<scheme>ws</scheme>
+		<scheme>wss</scheme>
 	</schemes>
 	<tags>
 		<tag>

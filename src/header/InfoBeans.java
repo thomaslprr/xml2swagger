@@ -11,9 +11,10 @@ public class InfoBeans {
 	private String version;
 	private String title;
 	private String contactName;
+	private String contactEmail;
+	private String contactUrl;
 	private String licenceName;
 	private String licenceUrl;
-	private String contactEmail;
 	private String termsOfSerivce;
 
 	
@@ -63,6 +64,16 @@ public class InfoBeans {
 	@XmlElement(name="licence-url")	
 	public String getLicenceUrl() {
 		return licenceUrl;
+	}
+	
+	
+	@XmlElement(name="contact-url")
+	public String getContactUrl() {
+		return contactUrl;
+	}
+
+	public void setContactUrl(String contactUrl) {
+		this.contactUrl = contactUrl;
 	}
 
 	public void setDescription(String description) {

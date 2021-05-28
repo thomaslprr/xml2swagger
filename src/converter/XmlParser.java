@@ -1,28 +1,23 @@
 package converter;
 
-import java.io.File;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
+import exceptions.SchemesException;
 import global.Global;
 import global.Tag;
-import global.TagsDetailled;
 import paths.Method;
 import paths.Parameter;
 import paths.Path;
 import paths.Response;
+import security.Validator;
 
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) {
+	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -74,6 +69,10 @@ public class XmlParser {
 		if(global.getRest().getInfo().getContactEmail()!=null) {
 			contactJson.put("email", global.getRest().getInfo().getContactEmail());
 		}
+		if(global.getRest().getInfo().getContactUrl()!=null) {
+			contactJson.put("url",global.getRest().getInfo().getContactUrl());
+		}
+		
 		JSONObject licenseJson = new JSONObject();
 		licenseJson.put("name",global.getRest().getInfo().getLicenceName());
 		licenseJson.put("url", global.getRest().getInfo().getLicenceUrl());
@@ -113,6 +112,7 @@ public class XmlParser {
 		
 		if(global.getRest().getSchemes()!=null) {
 			JSONArray schemesArray = new JSONArray();
+			Validator.SchemesValidator(global.getRest().getSchemes().getScheme());
 			for(String schema : global.getRest().getSchemes().getScheme()) {
 				schemesArray.put(schema);
 			}
