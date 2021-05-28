@@ -262,6 +262,9 @@ public class XmlParser {
 				if(m.isDeprecated()) {
 					method.put("deprecated", true);
 				}
+				if(m.getSummary()!=null) {
+					method.put("summary", m.getSummary());
+				}
 				
 				JSONObject response = new JSONObject();
 				for(Response r : m.getResponses().getResponse()) {

@@ -20,9 +20,6 @@ public class Main {
 			Global global = (Global) unmarshaller.unmarshal(file);
 			
 			
-			//Print all the XML 
-			//XmlParser.printXml(global);
-			
 			System.out.println(XmlParser.xmlToSwaggerJson(global).toString());
 			
 		} catch (Exception e) {

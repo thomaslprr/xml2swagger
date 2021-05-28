@@ -14,6 +14,7 @@ public class Method {
 	private Produces produces;
 	private Parameters parameters;
 	private Responses responses;
+	private String summary;
 	private boolean deprecated;
 	
 	public String getType() {
@@ -60,6 +61,13 @@ public class Method {
 	public void setDeprecated(boolean deprecated) {
 		this.deprecated = deprecated;
 	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	
 	
 	
 	

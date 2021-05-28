@@ -145,6 +145,7 @@
 			<methods>
 				<method>
 					<type>get</type>
+					<summary>Method to search a color</summary>
 					<tags>
 						<tag-name>color v2</tag-name>
 					</tags>
