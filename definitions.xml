@@ -50,7 +50,6 @@
 </objects>
 
 <rest>
-	<swagger-version>2.0</swagger-version>
 	<info>
 		<description>The Application</description>
 		<version>1.0.0</version>
@@ -60,6 +59,7 @@
 		<contact-url>http://selic.fr/</contact-url>
 		<licence-name>Apache 2.0 License</licence-name>
 		<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
+		<terms-of-service>Test</terms-of-service>
 	</info>
 	<basePath>/slc_web_balder/ws/1.0</basePath>
 	<host>api.example.com</host>

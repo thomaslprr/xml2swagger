@@ -1,11 +1,14 @@
 package converter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
+import exceptions.LicenceException;
 import exceptions.SchemesException;
+import exceptions.SummaryException;
 import global.Global;
 import global.Tag;
 import paths.Method;
@@ -17,7 +20,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException {
+	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -56,7 +59,7 @@ public class XmlParser {
 
 		}
 		swaggerJson.put("definitions", definitions);
-		swaggerJson.put("swagger", global.getRest().getSwaggerVersion());
+		swaggerJson.put("swagger","2.0");
 		
 		JSONObject infoJson = new JSONObject();
 		infoJson.put("description", global.getRest().getInfo().getDescription());
@@ -74,8 +77,18 @@ public class XmlParser {
 		}
 		
 		JSONObject licenseJson = new JSONObject();
-		licenseJson.put("name",global.getRest().getInfo().getLicenceName());
-		licenseJson.put("url", global.getRest().getInfo().getLicenceUrl());
+		if(global.getRest().getInfo().getLicenceName()!=null) {
+			licenseJson.put("url", global.getRest().getInfo().getLicenceUrl());
+		}
+		if(global.getRest().getInfo().getLicenceUrl()!=null) {
+			if(global.getRest().getInfo().getLicenceName()==null) {
+				throw new LicenceException();
+			}else {
+				licenseJson.put("name",global.getRest().getInfo().getLicenceName());
+			}
+
+		}
+
 		
 		
 		infoJson.put("contact",contactJson);
@@ -149,6 +162,7 @@ public class XmlParser {
 					paramJson.put("in", param.getIn());
 					paramJson.put("name", param.getName());
 					paramJson.put("required", param.isRequired());
+					paramJson.put("description", param.getDescription());
 					if(param.getType()!=null) {
 						
 						paramJson.put("type", param.getType());
@@ -171,7 +185,13 @@ public class XmlParser {
 					method.put("deprecated", true);
 				}
 				if(m.getSummary()!=null) {
+					if(m.getSummary().length()>=120) {
+						throw new SummaryException();
+					}
 					method.put("summary", m.getSummary());
+				}
+				if(m.getDescription()!=null) {
+					method.put("description", m.getDescription());
 				}
 				
 				JSONObject response = new JSONObject();

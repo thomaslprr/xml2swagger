@@ -8,6 +8,7 @@ public class Parameter {
 	private Schema schema;
 	private String type;
 	private String format;
+	private String description;
 	
 	
 	public String getIn() {
@@ -46,6 +47,13 @@ public class Parameter {
 	public void setFormat(String format) {
 		this.format = format;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 	
 	

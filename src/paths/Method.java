@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 
+import exceptions.SummaryException;
 import global.Tags;
 
 public class Method {
@@ -16,6 +17,8 @@ public class Method {
 	private Responses responses;
 	private String summary;
 	private boolean deprecated;
+	private String description;
+	
 	
 	public String getType() {
 		return type;
@@ -61,12 +64,19 @@ public class Method {
 	public void setDeprecated(boolean deprecated) {
 		this.deprecated = deprecated;
 	}
-	public String getSummary() {
+	public String getSummary() throws SummaryException {
 		return summary;
 	}
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 	
 	
