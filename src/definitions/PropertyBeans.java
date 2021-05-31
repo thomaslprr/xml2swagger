@@ -6,7 +6,6 @@ public class PropertyBeans {
 	
 	private String name;
 	private String type;
-	private String format;
 	
 	private Item items;
 
@@ -26,15 +25,6 @@ public class PropertyBeans {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	@XmlElement(name = "format")
-	public String getFormat() {
-		return format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
 	}
 
 	@XmlElement(name = "items")

@@ -9,28 +9,24 @@
 		<properties>
             <property>
             	<name>alpha</name>
-            	<format>int32</format>
-            	<type>integer</type>
+            	<type>long</type>
             </property>
             <property>
             	<name>blue</name>
-            	<format>int32</format>
-            	<type>integer</type>
+            	<type>long</type>
             </property>
             <property>
             	<name>code</name>
-            	<type>string</type>
+            	<type>long</type>
             </property>
 			<property>
 				<name>id</name>
-				<type>integer</type>
-				<format>int64</format>
+				<type>long</type>
 			</property>
 			
 			<property>
 				<name>label</name>
 				<type>string</type>
-				<format></format>
 			</property>
 			
 			<property>
@@ -88,7 +84,7 @@
 				<method>
 					<type>get</type>
 					<tags>
-						<tag-name>color v2</tag-name>
+						<tag>color v2</tag>
 					</tags>
 					<operation-id>search</operation-id>
 					<produces>
@@ -109,7 +105,7 @@
 				<method>
 					<type>post</type>
 					<tags>
-						<tag-name>color v2</tag-name>
+						<tag>color v2</tag>
 					</tags>
 					<operation-id>add</operation-id>
 					<produces>
@@ -150,7 +146,7 @@
 					<type>get</type>
 					<summary>Method to search a color</summary>
 					<tags>
-						<tag-name>color v2</tag-name>
+						<tag>color v2</tag>
 					</tags>
 					<operation-id>search</operation-id>
 					<produces>
@@ -179,7 +175,7 @@
 				<method>
 					<type>put</type>
 					<tags>
-						<tag-name>color v2</tag-name>
+						<tag>color v2</tag>
 					</tags>
 					<operation-id>update</operation-id>
 					<produces>

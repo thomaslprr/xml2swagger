@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
+import exceptions.DataTypeException;
 import exceptions.LicenceException;
 import exceptions.MethodException;
 import exceptions.PathException;
@@ -25,7 +26,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException, PathException, MethodException {
+	public static JSONObject xmlToSwaggerJson(Global global) throws Exception {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -40,24 +41,46 @@ public class XmlParser {
 			for(PropertyBeans property : object.getProperties().getProperties()) {
 				JSONObject propertyJson = new JSONObject();
 				
-				propertyJson.put("type", property.getType());
 				
-				if(property.getFormat()!= null && !property.getFormat().equals("")) {
-					propertyJson.put("format", property.getFormat());
+				String dataType = dataTypeToTypeAndFormat(property.getType());
+				String type = dataType.split("/")[0];
+				String format;
+				try {
+				 format = dataType.split("/")[1];
+				}catch(ArrayIndexOutOfBoundsException e) {
+					format = "";
+				}
+
+				
+				propertyJson.put("type", type);
+				
+				if(!format.equals("")) {
+					propertyJson.put("format", format);
 				}
 				
 				if(property.getType().equals("array")) {
 					JSONObject arrayJson = new JSONObject();
-					arrayJson.put("type", property.getItems().getType());
-					if(property.getItems().getFormat()!=null) {
-						arrayJson.put("format", property.getItems().getFormat());
+					if(property.getItems()==null) {
+						throw new Exception("If property type is equals to \"array\", you should have a <items> tag.");
+					}
+					String dataTypeItems = dataTypeToTypeAndFormat(property.getItems().getType());
+					String typeItems = dataTypeItems.split("/")[0];
+					String formatItems;
+					try {
+						 formatItems = dataTypeItems.split("/")[1];
+						}catch(ArrayIndexOutOfBoundsException e) {
+							formatItems = "";
+						}
+					arrayJson.put("type", typeItems);
+					if(!formatItems.equals("")) {
+						arrayJson.put("format", property.getItems().getType());
 					}
 					
 					propertyJson.put("items", arrayJson);
 				}
 				properties.put(property.getName(), propertyJson);
 				propertiesJson.put("properties", properties);
-				propertiesJson.put("type", object.getType());
+				propertiesJson.put("type", "object");
 
 			}
 			definitions.put(object.getName(), propertiesJson);
@@ -254,6 +277,44 @@ public class XmlParser {
 		
 		return swaggerJson;
 
+	}
+	
+	private static String dataTypeToTypeAndFormat(String dataType) throws DataTypeException {
+		
+		if(dataType==null || dataType.equals("")) {
+			throw new DataTypeException(dataType);
+		}
+		
+
+		switch(dataType) {
+		case "integer":
+			return "integer/int32";
+		case "long":
+			return "integer/int64";
+		case "float":
+			return "number/float";
+		case "double":
+			return "number/double";
+		case "string":
+			return "string/";
+		case "byte":
+			return "string/byte";
+		case "binary":
+			return "string/binary";
+		case "boolean":
+			return "boolean";
+		case "date":
+			return "string/date";
+		case "dateTime":
+			return "string/date-time";
+		case "password":
+			return "string/password";
+		case "array":
+			return "array/";
+		default:
+			throw new DataTypeException(dataType);
+			
+		}
 	}
 
 }

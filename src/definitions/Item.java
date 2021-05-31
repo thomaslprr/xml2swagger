@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 public class Item {
 	
 	private String type;
-	private String format;
 	
 	@XmlElement(name = "type")
 	public String getType() {
@@ -14,14 +13,7 @@ public class Item {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	@XmlElement(name = "format")
-	public String getFormat() {
-		return format;
-	}
-	public void setFormat(String format) {
-		this.format = format;
-	}
+
 	
 	
 

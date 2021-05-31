@@ -9,7 +9,7 @@ public class Tags {
 	
 	private List<String> tagName;
 
-	@XmlElement(name="tag-name")
+	@XmlElement(name="tag")
 	public List<String> getTag() {
 		return tagName;
 	}
