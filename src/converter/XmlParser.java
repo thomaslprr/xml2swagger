@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
 import exceptions.LicenceException;
+import exceptions.MethodException;
 import exceptions.PathException;
 import exceptions.SchemesException;
 import exceptions.SummaryException;
@@ -24,7 +25,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException, PathException {
+	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException, PathException, MethodException {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -154,6 +155,9 @@ public class XmlParser {
 			JSONObject pathJson = new JSONObject();
 			
 			for(Method m : p.getMethods().getMethod()) {
+				
+				Validator.methodValidator(m.getType());
+				
 				JSONObject method = new JSONObject();
 				
 				JSONArray tagsList2 = new JSONArray();

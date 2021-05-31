@@ -3,6 +3,7 @@ package security;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.MethodException;
 import exceptions.SchemesException;
 
 public class Validator {
@@ -14,8 +15,6 @@ public class Validator {
 		possibleSchemes.add("https");
 		possibleSchemes.add("ws");
 		possibleSchemes.add("wss");
-
-		
 		
 		if(schemesList.size()>4) {
 			throw new SchemesException("The <schemes> tag can only contains <scheme> tag with the following value: \n "
@@ -37,6 +36,20 @@ public class Validator {
 		
 		
 		
+	}
+	
+	public static void methodValidator(String methodType) throws MethodException {
+		List<String> possibleMethodsType = new ArrayList<>();
+		possibleMethodsType.add("get");
+		possibleMethodsType.add("put");
+		possibleMethodsType.add("post");
+		possibleMethodsType.add("delete");
+		possibleMethodsType.add("options");
+		possibleMethodsType.add("head");
+		possibleMethodsType.add("patch");
+		if(!possibleMethodsType.contains(methodType)) {
+			throw new MethodException(methodType);
+		}
 	}
 	
 }
