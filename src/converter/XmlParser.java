@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
 import exceptions.LicenceException;
+import exceptions.PathException;
 import exceptions.SchemesException;
 import exceptions.SummaryException;
 import exceptions.TagException;
@@ -23,7 +24,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException {
+	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException, PathException {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -106,7 +107,9 @@ public class XmlParser {
 		JSONArray tagsList = new JSONArray();
 		ArrayList<String> tagsName = new ArrayList<>();
 		for(Tag tag : global.getRest().getTags().getTag()) {
-			if(!tagsName.contains(tag.getName())) {
+			if(tagsName.contains(tag.getName())) {
+				throw new TagException(tag.getName());
+			}
 				
 			
 			tagsName.add(tag.getName());
@@ -128,9 +131,6 @@ public class XmlParser {
 				t.put("externalDocs", externalDocs);
 			}
 			tagsList.put(t);
-			}else {
-				throw new TagException(tag.getName());
-			}
 		}
 		swaggerJson.put("tags", tagsList);
 		
@@ -146,6 +146,10 @@ public class XmlParser {
 		JSONObject pathsJson = new JSONObject();
 		
 		for(Path p : global.getRest().getPaths().getPath()) {
+			
+			if(p.getName().equals("") || p.getName().charAt(0)!='/') {
+				throw new PathException(p.getName());
+			}
 			
 			JSONObject pathJson = new JSONObject();
 			
