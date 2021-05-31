@@ -92,7 +92,7 @@
 					</tags>
 					<operation-id>search</operation-id>
 					<produces>
-						<produce-type>application/json</produce-type>
+						<produce>application/json</produce>
 					</produces>
 					<parameters>
 					
@@ -113,7 +113,7 @@
 					</tags>
 					<operation-id>add</operation-id>
 					<produces>
-						<produce-type>application/json</produce-type>
+						<produce>application/json</produce>
 					</produces>
 					<parameters>
 						<parameter>
@@ -154,7 +154,7 @@
 					</tags>
 					<operation-id>search</operation-id>
 					<produces>
-						<produce-type>application/json</produce-type>
+						<produce>application/json</produce>
 					</produces>
 					<parameters>
 						<parameter>
@@ -183,7 +183,7 @@
 					</tags>
 					<operation-id>update</operation-id>
 					<produces>
-						<produce-type>application/json</produce-type>
+						<produce>application/json</produce>
 					</produces>
 					<parameters>
 						<parameter>

@@ -13,6 +13,7 @@ public class Method {
 	private Tags tags;
 	private String operationId;
 	private Produces produces;
+	private Consumes consumes;
 	private Parameters parameters;
 	private Responses responses;
 	private String summary;
@@ -75,6 +76,12 @@ public class Method {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Consumes getConsumes() {
+		return consumes;
+	}
+	public void setConsumes(Consumes consumes) {
+		this.consumes = consumes;
 	}
 	
 	

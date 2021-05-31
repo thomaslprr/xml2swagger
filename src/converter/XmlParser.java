@@ -167,11 +167,27 @@ public class XmlParser {
 				method.put("tags", tagsList2);
 				method.put("operationId", m.getOperationId());
 				
-				JSONArray producesJson = new JSONArray();
-				for(String s : m.getProduces().getProduceType()) {
-					producesJson.put(s);
+				if(m.getProduces()!=null) {
+					JSONArray producesJson = new JSONArray();
+					if(m.getProduces().getProduceType()!=null) {
+						for(String s : m.getProduces().getProduceType()) {
+							producesJson.put(s);
+						}
+					}
+					method.put("produces", producesJson);
 				}
-				method.put("produces", producesJson);
+				
+				if(m.getConsumes()!=null) {
+					JSONArray consumesJson = new JSONArray();
+					if(m.getConsumes().getConsumeType()!=null) {
+						for(String s : m.getConsumes().getConsumeType()) {
+							consumesJson.put(s);
+						}
+					}
+					
+					method.put("consumes", consumesJson);
+				}
+				
 
 				JSONArray parametersJson = new JSONArray();
 				if(m.getParameters().getParameter() !=null) {

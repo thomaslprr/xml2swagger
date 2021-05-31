@@ -8,7 +8,7 @@ public class Produces {
 	
 	private List<String> produceType;
 	
-	@XmlElement(name="produce-type")
+	@XmlElement(name="produce")
 	public List<String> getProduceType() {
 		return produceType;
 	}
