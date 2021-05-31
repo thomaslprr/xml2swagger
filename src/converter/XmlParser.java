@@ -1,5 +1,7 @@
 package converter;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import definitions.PropertyBeans;
 import exceptions.LicenceException;
 import exceptions.SchemesException;
 import exceptions.SummaryException;
+import exceptions.TagException;
 import global.Global;
 import global.Tag;
 import paths.Method;
@@ -20,7 +23,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException {
+	public static JSONObject xmlToSwaggerJson(Global global) throws SchemesException, LicenceException, SummaryException, TagException {
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -65,7 +68,7 @@ public class XmlParser {
 		infoJson.put("description", global.getRest().getInfo().getDescription());
 		infoJson.put("version", global.getRest().getInfo().getVersion());
 		infoJson.put("title", global.getRest().getInfo().getTitle());
-		infoJson.put("termsOfService", global.getRest().getInfo().getTermsOfSerivce());
+		infoJson.put("termsOfService", global.getRest().getInfo().getTermsOfService());
 		
 		JSONObject contactJson = new JSONObject();
 		contactJson.put("name", global.getRest().getInfo().getContactName());
@@ -101,7 +104,12 @@ public class XmlParser {
 		}
 		
 		JSONArray tagsList = new JSONArray();
+		ArrayList<String> tagsName = new ArrayList<>();
 		for(Tag tag : global.getRest().getTags().getTag()) {
+			if(!tagsName.contains(tag.getName())) {
+				
+			
+			tagsName.add(tag.getName());
 			JSONObject t = new JSONObject();
 			t.put("name", tag.getName());
 			if(tag.getDescription()!=null) {
@@ -120,6 +128,9 @@ public class XmlParser {
 				t.put("externalDocs", externalDocs);
 			}
 			tagsList.put(t);
+			}else {
+				throw new TagException(tag.getName());
+			}
 		}
 		swaggerJson.put("tags", tagsList);
 		

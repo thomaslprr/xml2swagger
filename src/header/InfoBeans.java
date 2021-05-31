@@ -15,7 +15,7 @@ public class InfoBeans {
 	private String contactUrl;
 	private String licenceName;
 	private String licenceUrl;
-	private String termsOfSerivce;
+	private String termsOfService;
 
 	
 	@XmlElement(name="contact-email")	
@@ -28,12 +28,12 @@ public class InfoBeans {
 	}
 	
 	@XmlElement(name="terms-of-service")
-	public String getTermsOfSerivce() {
-		return termsOfSerivce;
+	public String getTermsOfService() {
+		return termsOfService;
 	}
 
-	public void setTermsOfSerivce(String termsOfSerivce) {
-		this.termsOfSerivce = termsOfSerivce;
+	public void setTermsOfService(String termsOfSerivce) {
+		this.termsOfService = termsOfSerivce;
 	}
 
 	@XmlElement(name="description")	

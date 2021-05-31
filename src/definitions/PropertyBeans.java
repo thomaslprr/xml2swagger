@@ -8,7 +8,7 @@ public class PropertyBeans {
 	private String type;
 	private String format;
 	
-	private ItemsBeans items;
+	private Item items;
 
 	@XmlElement(name = "name")
 	public String getName() {
@@ -38,11 +38,11 @@ public class PropertyBeans {
 	}
 
 	@XmlElement(name = "items")
-	public ItemsBeans getItems() {
+	public Item getItems() {
 		return items;
 	}
 
-	public void setItems(ItemsBeans items) {
+	public void setItems(Item items) {
 		this.items = items;
 	}
 

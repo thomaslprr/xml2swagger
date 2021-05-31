@@ -2,7 +2,7 @@ package definitions;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class ItemsBeans {
+public class Item {
 	
 	private String type;
 	private String format;
