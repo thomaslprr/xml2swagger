@@ -10,21 +10,35 @@ import global.Global;
 
 public class Main {
 
-	public static void main(String[] args) {
-		try {
-			File file = new File("definitions.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(Global.class);
+	public static void main(String[] args) throws Exception {
+		
+		if(args.length>=2) {
 			
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			if(args[0].equals("-f")) {
+				
+				File file = new File(args[1]);
+				XmlParser.xmlFileToSwaggerJson(file);
+				
+			}else if(args[0].equals("-s")) {
+				XmlParser.xmlStringToSwaggerJson(args[1]);
+			}else {
+				throw new Exception("First argument must be :\n  "
+						+ "'-f' for a file url  \n"
+						+ "'-s' for a xml string input");
+			}
 			
-			Global global = (Global) unmarshaller.unmarshal(file);
+		}else {
+		
+			throw new Exception("You must have 2 arguments. \n"
+					+ "First argument must be : \n"
+					+ "'-f' for a file url  \n"
+					+ "'-s' for a xml string input \n \n"
+					+ "Second argument must be : \n"
+					+ "File url if '-f' is used \n"
+					+ "XML string input if '-s' is used");
 			
-			
-			System.out.println(XmlParser.xmlToSwaggerJson(global).toString());
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+		
 	}
 
 }

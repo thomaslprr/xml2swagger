@@ -1,6 +1,13 @@
 package converter;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,7 +32,7 @@ import security.Validator;
 public class XmlParser {
 	
 	
-	public static JSONObject xmlToSwaggerJson(Global global) throws Exception {
+	private static JSONObject xmlToSwaggerJson(Global global) throws Exception {
 		
 		if(global.getRest()==null) {
 			throw new RestException();
@@ -447,5 +454,49 @@ public class XmlParser {
 			
 		}
 	}
+	
+	public static String xmlFileToSwaggerJson(File file) {
+		try {
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(Global.class);
+			
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			
+			Global global = (Global) unmarshaller.unmarshal(file);
+			
+			String result = XmlParser.xmlToSwaggerJson(global).toString();
+			System.out.println(result);
+			return result;
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static String xmlStringToSwaggerJson(String xml) {
+		try {
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(Global.class);
+			
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			
+			InputStream stream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
+			
+			Global global = (Global) unmarshaller.unmarshal(stream);
+			
+			String result = XmlParser.xmlToSwaggerJson(global).toString();
+			System.out.println(result);
+			return result;
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 
 }
