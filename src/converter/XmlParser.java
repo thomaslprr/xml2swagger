@@ -288,21 +288,56 @@ public class XmlParser {
 				if(m.getParameters()!=null && m.getParameters().getParameter() !=null) {
 					
 				for(Parameter param : m.getParameters().getParameter()) {
+					
 					JSONObject paramJson = new JSONObject();
-					paramJson.put("in", param.getIn());
-					paramJson.put("name", param.getName());
-					paramJson.put("required", param.isRequired());
-					paramJson.put("description", param.getDescription());
-					if(param.getType()!=null) {
-						
-						paramJson.put("type", param.getType());
+					
+					if(param.getIn()==null) {
+						throw new Exception("You must have a <in> tag in Parameter object");
+					}
+					if(param.getName()==null) {
+						throw new Exception("You must have a <name> tag in Parameter object");
 					}
 					
-					if(param.getFormat()!=null) {
-						paramJson.put("format", param.getFormat());
+					if(param.getIn().equals("body")&&param.getSchema()==null) {
+						throw new Exception("You must have a <schema> tag in Parameter object if <in> = \"body\" ");
 					}
+					if(!param.getIn().equals("body")&&param.getType()==null) {
+						throw new Exception("You must have a <type> tag in Parameter object if <in> != \"body\" ");
+					}
+					
+					if(param.getIn().equals("path")) {
+						paramJson.put("required", true);
+					}else {
+						paramJson.put("required", param.isRequired());
+					}
+					
+					paramJson.put("in", param.getIn());
+					paramJson.put("name", param.getName());
+					
+					if(param.getDescription()!=null) {
+						paramJson.put("description", param.getDescription());
+					}
+					
+					if(!param.getIn().equals("body")) {
+						String dataType = dataTypeToTypeAndFormat(param.getType());
+						String type = dataType.split("/")[0];
+						String format;
+						try {
+						 format = dataType.split("/")[1];
+						}catch(ArrayIndexOutOfBoundsException e) {
+							format = "";
+						}
+							
+						paramJson.put("type", type);
+						paramJson.put("format", format);
+									
+					}
+					
 					if(param.getSchema()!=null) {
 						JSONObject schemaJson= new JSONObject();
+						if(param.getSchema().getRef()==null) {
+							throw new Exception("You must have a <ref> tag in Schema object");
+						}
 						schemaJson.put("$ref","#/definitions/"+param.getSchema().getRef() );
 						paramJson.put("schema", schemaJson);
 					}
@@ -331,11 +366,22 @@ public class XmlParser {
 				if(m.getResponses().getResponse()!=null) {
 				JSONObject response = new JSONObject();
 				for(Response r : m.getResponses().getResponse()) {
+					
+					if(r.getName()==null) {
+						throw new Exception("You must have a <name> tag in Response Object");
+					}
+					if(r.getDescription()==null) {
+						throw new Exception("You must have a <description> tag in Response Object");
+					}
+					
 					JSONObject description = new JSONObject() ;
 					description.put("description", r.getDescription());
 					
 					if(r.getSchema()!=null) {
 						JSONObject schemaJson= new JSONObject();
+						if(r.getSchema().getRef()==null) {
+							throw new Exception("You must have a <ref> tag in Schema object");
+						}
 						schemaJson.put("$ref","#/definitions/"+r.getSchema().getRef() );
 						description.put("schema", schemaJson);
 					}

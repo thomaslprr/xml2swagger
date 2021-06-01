@@ -166,7 +166,6 @@
 							<in>path</in>
 							<required>true</required>
 							<type>integer</type>
-							<format>int64</format>
 						</parameter>
 					
 					</parameters>

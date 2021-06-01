@@ -7,7 +7,6 @@ public class Parameter {
 	private boolean required ;
 	private Schema schema;
 	private String type;
-	private String format;
 	private String description;
 	
 	
@@ -41,12 +40,7 @@ public class Parameter {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getFormat() {
-		return format;
-	}
-	public void setFormat(String format) {
-		this.format = format;
-	}
+
 	public String getDescription() {
 		return description;
 	}
