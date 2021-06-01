@@ -46,8 +46,14 @@ public class XmlParser {
 						
 			JSONObject properties = new JSONObject();
 			JSONObject propertiesJson = new JSONObject();
-
 			
+			propertiesJson.put("type", "object");
+
+			if(object.getProperties()==null) {
+				throw new Exception("You must have <properties> tag in your object definition");
+			}
+			
+			if(object.getProperties().getProperties()!=null) {
 			for(PropertyBeans property : object.getProperties().getProperties()) {
 				JSONObject propertyJson = new JSONObject();
 				
@@ -90,11 +96,12 @@ public class XmlParser {
 				}
 				properties.put(property.getName(), propertyJson);
 				propertiesJson.put("properties", properties);
-				propertiesJson.put("type", "object");
-
+				
 			}
+			}
+			
 			definitions.put(object.getName(), propertiesJson);
-
+			
 		}
 		swaggerJson.put("definitions", definitions);
 		}

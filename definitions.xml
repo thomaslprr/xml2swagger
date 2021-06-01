@@ -5,7 +5,6 @@
 	
 	<object>
 		<name>ColorRestBeans</name>
-		<type>object</type>
 		<properties>
             <property>
             	<name>alpha</name>
@@ -42,6 +41,15 @@
 	
 	</object>
 	
+	<object>
+		<name>CountableRestBeans</name>
+		<properties>
+           
+			
+		
+		</properties>
+	
+	</object>
 
 </objects>
 
