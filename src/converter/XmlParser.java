@@ -55,6 +55,11 @@ public class XmlParser {
 			
 			if(object.getProperties().getProperties()!=null) {
 			for(PropertyBeans property : object.getProperties().getProperties()) {
+				if(property.getName()==null) {
+					throw new Exception("Property name can't be null. Each property of an object must have a name. \n "
+							+ "You must have a <name> tag for each property of an object. \n");
+				}
+				
 				JSONObject propertyJson = new JSONObject();
 				
 				

@@ -8,7 +8,7 @@ public class DataTypeException extends Exception{
 	
 	private static String exceptionToSend(String dataType) {
 		if(dataType==null) {
-			return "Every <property> tag must have a <type> tag.";
+			return "Every <property> and <items> tag must have a <type> tag.";
 		}else if(dataType.equals("")){
 			return "<type> tag can't be empty.";
 		}
