@@ -188,6 +188,11 @@ public class XmlParser {
 			JSONArray tagsList = new JSONArray();
 			ArrayList<String> tagsName = new ArrayList<>();
 			for(Tag tag : global.getRest().getTags().getTag()) {
+				
+				if(tag.getName()==null) {
+					throw new Exception("You must have a <name> tag in Tag object");
+				}
+				
 				if(tagsName.contains(tag.getName())) {
 					throw new TagException(tag.getName());
 				}
@@ -206,9 +211,11 @@ public class XmlParser {
 						externalDocs.put("description", tag.getExternalDocs().getDescription());
 					}
 					
-					if(tag.getExternalDocs().getUrl()!=null) {
-						externalDocs.put("url", tag.getExternalDocs().getUrl());
+					if(tag.getExternalDocs().getUrl()==null) {
+						throw new Exception("You must have a <url> tag in ExternalDocs object");
 					}
+					externalDocs.put("url", tag.getExternalDocs().getUrl());
+					
 					t.put("externalDocs", externalDocs);
 				}
 				tagsList.put(t);
