@@ -52,4 +52,23 @@ public class Validator {
 		}
 	}
 	
+	public static void isResponseValid(String methodType) throws Exception {
+		if(!methodType.equals("default")) {
+			try {
+				int number = Integer.parseInt(methodType);
+				if(! (number>=100&&number<=599)) {
+					throw new Exception("Response name can only be \"default\" or a HTTP Status Code (number between 100 and 599)\n"
+							+ "number"+ " is not between 100 and 599");
+					
+				}
+			}catch(NumberFormatException e) {
+				throw new Exception("Response name can only be \"default\" or a HTTP Status Code (number between 100 and 599)\n"
+						+ "\""+methodType+"\" is not a correct value");
+			}	
+
+		}
+		
+		
+	}
+	
 }

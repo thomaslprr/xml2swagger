@@ -3,18 +3,15 @@ package converter;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import definitions.ObjectBeans;
 import definitions.PropertyBeans;
 import exceptions.DataTypeException;
 import exceptions.LicenceException;
-import exceptions.MethodException;
 import exceptions.NameObjectException;
 import exceptions.PathException;
 import exceptions.RestException;
-import exceptions.SchemesException;
 import exceptions.SummaryException;
 import exceptions.TagException;
 import global.Global;
@@ -373,6 +370,8 @@ public class XmlParser {
 				if(m.getResponses().getResponse()!=null) {
 				JSONObject response = new JSONObject();
 				for(Response r : m.getResponses().getResponse()) {
+					
+					Validator.isResponseValid(r.getName());
 					
 					if(r.getName()==null) {
 						throw new Exception("You must have a <name> tag in Response Object");
