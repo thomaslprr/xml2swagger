@@ -34,6 +34,14 @@ public class XmlParser {
 			throw new RestException();
 		}
 		
+		if(global.getRest().getInfo()==null) {
+			throw new Exception("You must have a <info> tag in the Rest object");
+		}
+		
+		if(global.getRest().getPaths()==null) {
+			throw new Exception("You must have a <paths> tag in the Rest object");
+		}
+		
 		JSONObject swaggerJson = new JSONObject();
 		
 		if(global.getObjects()!=null && global.getObjects().getObject()!=null) {
@@ -148,42 +156,53 @@ public class XmlParser {
 		infoJson.put("license", licenseJson);
 		
 		swaggerJson.put("info", infoJson);
-		swaggerJson.put("basePath", global.getRest().getBasePath());
+		if(global.getRest().getBasePath()!=null) {
+			swaggerJson.put("basePath", global.getRest().getBasePath());
+		}
 		if(global.getRest().getHost()!=null) {
 			swaggerJson.put("host", global.getRest().getHost());
 		}
 		
-		JSONArray tagsList = new JSONArray();
-		ArrayList<String> tagsName = new ArrayList<>();
-		for(Tag tag : global.getRest().getTags().getTag()) {
-			if(tagsName.contains(tag.getName())) {
-				throw new TagException(tag.getName());
-			}
+		/**
+		 * Header tags
+		 */
+		if(global.getRest().getTags()!=null && global.getRest().getTags().getTag()!=null) {
+			
+			JSONArray tagsList = new JSONArray();
+			ArrayList<String> tagsName = new ArrayList<>();
+			for(Tag tag : global.getRest().getTags().getTag()) {
+				if(tagsName.contains(tag.getName())) {
+					throw new TagException(tag.getName());
+				}
+					
 				
-			
-			tagsName.add(tag.getName());
-			JSONObject t = new JSONObject();
-			t.put("name", tag.getName());
-			if(tag.getDescription()!=null) {
-				t.put("description", tag.getDescription());
-			}
-			
-			if(tag.getExternalDocs()!=null) {
-				JSONObject externalDocs = new JSONObject();
-				if(tag.getExternalDocs().getDescription()!=null) {
-					externalDocs.put("description", tag.getExternalDocs().getDescription());
+				tagsName.add(tag.getName());
+				JSONObject t = new JSONObject();
+				t.put("name", tag.getName());
+				if(tag.getDescription()!=null) {
+					t.put("description", tag.getDescription());
 				}
 				
-				if(tag.getExternalDocs().getUrl()!=null) {
-					externalDocs.put("url", tag.getExternalDocs().getUrl());
+				if(tag.getExternalDocs()!=null) {
+					JSONObject externalDocs = new JSONObject();
+					if(tag.getExternalDocs().getDescription()!=null) {
+						externalDocs.put("description", tag.getExternalDocs().getDescription());
+					}
+					
+					if(tag.getExternalDocs().getUrl()!=null) {
+						externalDocs.put("url", tag.getExternalDocs().getUrl());
+					}
+					t.put("externalDocs", externalDocs);
 				}
-				t.put("externalDocs", externalDocs);
+				tagsList.put(t);
 			}
-			tagsList.put(t);
+			swaggerJson.put("tags", tagsList);
+			
 		}
-		swaggerJson.put("tags", tagsList);
 		
-		if(global.getRest().getSchemes()!=null) {
+		
+		
+		if(global.getRest().getSchemes()!=null && global.getRest().getSchemes().getScheme()!=null) {
 			JSONArray schemesArray = new JSONArray();
 			Validator.SchemesValidator(global.getRest().getSchemes().getScheme());
 			for(String schema : global.getRest().getSchemes().getScheme()) {
