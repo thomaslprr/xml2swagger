@@ -122,14 +122,31 @@ public class XmlParser {
 		
 		swaggerJson.put("swagger","2.0");
 		
+		if(global.getRest().getInfo().getVersion()==null) {
+			throw new Exception("You must have a <version> tag in the Info object");
+		}
+		if(global.getRest().getInfo().getTitle()==null) {
+			throw new Exception("You must have a <title> tag in the Info object");
+		}
+		
+		
 		JSONObject infoJson = new JSONObject();
-		infoJson.put("description", global.getRest().getInfo().getDescription());
+		if(global.getRest().getInfo().getDescription()!=null) {
+			infoJson.put("description", global.getRest().getInfo().getDescription());
+		}
 		infoJson.put("version", global.getRest().getInfo().getVersion());
 		infoJson.put("title", global.getRest().getInfo().getTitle());
-		infoJson.put("termsOfService", global.getRest().getInfo().getTermsOfService());
+		if(global.getRest().getInfo().getTermsOfService()!=null) {
+			infoJson.put("termsOfService", global.getRest().getInfo().getTermsOfService());
+		}
+		
 		
 		JSONObject contactJson = new JSONObject();
-		contactJson.put("name", global.getRest().getInfo().getContactName());
+		
+		if(global.getRest().getInfo().getContactName()!=null) {
+			contactJson.put("name", global.getRest().getInfo().getContactName());
+		}
+		
 		if(global.getRest().getInfo().getContactEmail()!=null) {
 			contactJson.put("email", global.getRest().getInfo().getContactEmail());
 		}
@@ -219,7 +236,13 @@ public class XmlParser {
 				throw new PathException(p.getName());
 			}
 			
+			if(p.getMethods()==null) {
+				throw new Exception("You must have a <methods> tag in Path object");
+			}
+			
 			JSONObject pathJson = new JSONObject();
+			
+			if(p.getMethods().getMethod()!=null) {
 			
 			for(Method m : p.getMethods().getMethod()) {
 				
@@ -227,12 +250,17 @@ public class XmlParser {
 				
 				JSONObject method = new JSONObject();
 				
-				JSONArray tagsList2 = new JSONArray();
-				for(String s : m.getTags().getTag()) {
-					tagsList2.put(s);
+				if(m.getTags()!=null && m.getTags().getTag()!=null) {
+					JSONArray tagsList2 = new JSONArray();
+					for(String s : m.getTags().getTag()) {
+						tagsList2.put(s);
+					}
+					method.put("tags", tagsList2);
 				}
-				method.put("tags", tagsList2);
-				method.put("operationId", m.getOperationId());
+				
+				if(m.getOperationId()!=null) {
+					method.put("operationId", m.getOperationId());
+				}
 				
 				if(m.getProduces()!=null) {
 					JSONArray producesJson = new JSONArray();
@@ -257,7 +285,7 @@ public class XmlParser {
 				
 
 				JSONArray parametersJson = new JSONArray();
-				if(m.getParameters().getParameter() !=null) {
+				if(m.getParameters()!=null && m.getParameters().getParameter() !=null) {
 					
 				for(Parameter param : m.getParameters().getParameter()) {
 					JSONObject paramJson = new JSONObject();
@@ -296,6 +324,11 @@ public class XmlParser {
 					method.put("description", m.getDescription());
 				}
 				
+				if(m.getResponses()==null) {
+					throw new Exception("You must have a <responses> tag in the Method object");
+				}
+				
+				if(m.getResponses().getResponse()!=null) {
 				JSONObject response = new JSONObject();
 				for(Response r : m.getResponses().getResponse()) {
 					JSONObject description = new JSONObject() ;
@@ -310,8 +343,10 @@ public class XmlParser {
 				}
 
 				method.put("responses", response);
+				}
 				
 				pathJson.put(m.getType(), method);
+			}
 			}
 			pathsJson.put(p.getName(), pathJson);
 			
