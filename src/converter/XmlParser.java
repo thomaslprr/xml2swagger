@@ -72,10 +72,13 @@ public class XmlParser {
 							+ "You must have a <name> tag for each property of an object. \n");
 				}
 				
+				
 				JSONObject propertyJson = new JSONObject();
+				if(property.getRef()!=null && !property.getRef().equals("")) {
+					propertyJson.put("$ref","#/definitions/"+property.getRef());
+				}else {
 				
-				
-				String dataType = dataTypeToTypeAndFormat(property.getType());
+				String dataType = dataTypeToTypeAndFormat(property.getType().toLowerCase());
 				String type = dataType.split("/")[0];
 				String format;
 				try {
@@ -96,7 +99,7 @@ public class XmlParser {
 					if(property.getItems()==null) {
 						throw new Exception("If property type is equals to \"array\", you should have a <items> tag.");
 					}
-					String dataTypeItems = dataTypeToTypeAndFormat(property.getItems().getType());
+					String dataTypeItems = dataTypeToTypeAndFormat(property.getItems().getType().toLowerCase());
 					String typeItems = dataTypeItems.split("/")[0];
 					String formatItems;
 					try {
@@ -110,6 +113,8 @@ public class XmlParser {
 					}
 					
 					propertyJson.put("items", arrayJson);
+				}
+				
 				}
 				properties.put(property.getName(), propertyJson);
 				propertiesJson.put("properties", properties);
@@ -464,7 +469,7 @@ public class XmlParser {
 			
 			Global global = (Global) unmarshaller.unmarshal(file);
 			
-			String result = XmlParser.xmlToSwaggerJson(global).toString();
+			String result = XmlParser.xmlToSwaggerJson(global).toString(2);
 			System.out.println(result);
 			return result;
 
@@ -486,7 +491,7 @@ public class XmlParser {
 			
 			Global global = (Global) unmarshaller.unmarshal(stream);
 			
-			String result = XmlParser.xmlToSwaggerJson(global).toString();
+			String result = XmlParser.xmlToSwaggerJson(global).toString(2);
 			System.out.println(result);
 			return result;
 

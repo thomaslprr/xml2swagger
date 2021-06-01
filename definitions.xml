@@ -24,8 +24,8 @@
 			</property>
 			
 			<property>
-				<name>label</name>
-				<type>string</type>
+				<name>Label</name>
+				<ref>Label</ref>
 			</property>
 			
 			<property>
@@ -42,14 +42,24 @@
 	</object>
 	
 	<object>
-		<name>CountableRestBeans</name>
+		<name>Label</name>
 		<properties>
-           
+            <property>
+            	<name>Name</name>
+            	<type>string</type>
+            </property>
+            
+            <property>
+            	<name>Description</name>
+            	<type>string</type>
+            </property>
+            
 			
 		
 		</properties>
 	
 	</object>
+	
 
 </objects>
 
@@ -115,7 +125,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>add</operation-id>
+					<operation-id>add-color</operation-id>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
@@ -156,7 +166,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>search</operation-id>
+					<operation-id>search-detailled</operation-id>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
@@ -189,6 +199,12 @@
 						<produce>application/json</produce>
 					</produces>
 					<parameters>
+					<parameter>
+							<name>id</name>
+							<in>path</in>
+							<required>true</required>
+							<type>integer</type>
+						</parameter>
 						<parameter>
 							<in>body</in>
 							<name>body</name>

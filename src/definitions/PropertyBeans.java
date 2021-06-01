@@ -7,6 +7,8 @@ public class PropertyBeans {
 	private String name;
 	private String type;
 	
+	private String ref;
+	
 	private Item items;
 
 	@XmlElement(name = "name")
@@ -35,6 +37,16 @@ public class PropertyBeans {
 	public void setItems(Item items) {
 		this.items = items;
 	}
+
+	public String getRef() {
+		return ref;
+	}
+
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
+	
+	
 
 	
 	
