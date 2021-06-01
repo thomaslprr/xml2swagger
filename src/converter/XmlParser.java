@@ -11,7 +11,9 @@ import definitions.PropertyBeans;
 import exceptions.DataTypeException;
 import exceptions.LicenceException;
 import exceptions.MethodException;
+import exceptions.NameObjectException;
 import exceptions.PathException;
+import exceptions.RestException;
 import exceptions.SchemesException;
 import exceptions.SummaryException;
 import exceptions.TagException;
@@ -28,11 +30,19 @@ public class XmlParser {
 	
 	public static JSONObject xmlToSwaggerJson(Global global) throws Exception {
 		
+		if(global.getRest()==null) {
+			throw new RestException();
+		}
+		
 		JSONObject swaggerJson = new JSONObject();
 		
-		
+		if(global.getObjects()!=null && global.getObjects().getObject()!=null) {
 		JSONObject definitions = new JSONObject();
 		for(ObjectBeans object : global.getObjects().getObject()) {
+			
+			if(object.getName()==null || object.getName().trim().equals("")) {
+				throw new NameObjectException(object.getName());
+			}
 						
 			JSONObject properties = new JSONObject();
 			JSONObject propertiesJson = new JSONObject();
@@ -87,6 +97,9 @@ public class XmlParser {
 
 		}
 		swaggerJson.put("definitions", definitions);
+		}
+		
+		
 		swaggerJson.put("swagger","2.0");
 		
 		JSONObject infoJson = new JSONObject();
