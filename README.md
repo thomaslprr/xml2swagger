@@ -19,17 +19,23 @@ To do this you must:
 - Place yourself in the directory of the ".jar" file downloaded above
 - Type the command 
 
-`java -jar xml2swagger.jar -f <file-name.xml>` for example `java -jar xml2swagger.jar -f desktop/perso/example1.xml`
+`java -jar xml2swagger.jar -f <file-name.xml>` 
 
-or
+_for example `java -jar xml2swagger.jar -f desktop/perso/example1.xml`_
 
-`java -jar xml2swagger.jar -s <xml-string>` for example `java -jar xml2swagger.jar -s "<global> <rest>...</rest> </global>"`
+
+-------------**or**-------------
+
+
+`java -jar xml2swagger.jar -s <xml-string>` 
+
+_for example `java -jar xml2swagger.jar -s "<global> <rest>...</rest> </global>"`_
 
 Note: 
 
 • `-s` option allows to specify an xml string `-s` means string input
 
-• `-f`option allows to specify an .xml file address `-f` means file input
+• `-f` option allows to specify an .xml file address `-f` means file input
 
 **Use the module in the Java source code:**
 
