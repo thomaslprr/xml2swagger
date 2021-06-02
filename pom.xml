@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>xml2swagger</groupId>
   <artifactId>xml2swagger</artifactId>
-  <version>1.0-beta</version>
+  <version>1.0-beta</version>  
   
   <dependencies>
   
