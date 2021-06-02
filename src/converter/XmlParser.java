@@ -502,6 +502,45 @@ public class XmlParser {
 		}
 	}
 	
+	public static Global xmlFileToJavaClass(File file) {
+		try {
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(Global.class);
+			
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			
+			Global global = (Global) unmarshaller.unmarshal(file);
+			
+			return global;
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+
+	
+	public static Global xmlStringToJavaClass(String xml) {
+		try {
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(Global.class);
+			
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			
+			InputStream stream = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
+			
+			Global global = (Global) unmarshaller.unmarshal(stream);
+			
+			return global;
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 
 }

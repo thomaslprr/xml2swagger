@@ -2,11 +2,7 @@ package test;
 
 import java.io.File;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-
 import converter.XmlParser;
-import global.Global;
 
 public class Main {
 
