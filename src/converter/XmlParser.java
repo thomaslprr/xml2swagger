@@ -335,14 +335,20 @@ public class XmlParser {
 					}
 					
 					if(!param.getIn().equals("body")) {
-						String dataType = dataTypeToTypeAndFormat(param.getType());
-						String type = dataType.split("/")[0];
-						String format;
-						try {
-						 format = dataType.split("/")[1];
-						}catch(ArrayIndexOutOfBoundsException e) {
-							format = "";
+						String type="";
+						String format="";
+						if(param.getType().equals("file")) {
+							type="file";
+						}else {
+							String dataType = dataTypeToTypeAndFormat(param.getType());
+							type = dataType.split("/")[0];
+							try {
+							 format = dataType.split("/")[1];
+							}catch(ArrayIndexOutOfBoundsException e) {
+								format = "";
+							}
 						}
+						
 							
 						paramJson.put("type", type);
 						paramJson.put("format", format);
