@@ -35,7 +35,7 @@ Note:
 
 • `-s` option allows to specify an xml string `-s` means string input
 
-• `-f`option allows to specify an .xml file address `-f` means file input
+• `-f` option allows to specify an .xml file address `-f` means file input
 
 **Use the module in the Java source code:**
 
