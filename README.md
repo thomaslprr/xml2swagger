@@ -27,7 +27,7 @@ _for example `java -jar xml2swagger.jar -f desktop/perso/example1.xml`_
 -------------**or**-------------
 
 
-`java -jar xml2swagger.jar -s <xml-string>` 
+`java -jar xml2swagger.jar -s "<xml-string>"` 
 
 _for example `java -jar xml2swagger.jar -s "<global> <rest>...</rest> </global>"`_
 
