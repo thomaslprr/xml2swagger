@@ -47,10 +47,10 @@ Then you will benefit from four methods :
 
 | Method  | Description   |  
 |---|---|
-| `XmlParser.xmlFileToSwaggerJson(File file);`  | Convert xml file to swagger Json  | 
-| `XmlParser.xmlStringToSwaggerJson(String xml);`  | Convert xml string to swagger Json  | 
-| `XmlParser.xmlFileToJavaClass(File file)`| Convert xml file to Java class  | 
-|  `XmlParser.xmlStringToJavaClass(String xml)` | Convert xml string to Java class  | 
+| `XmlParser.xmlFileToSwaggerJson(File file);`  | Convert xml file into swagger Json  | 
+| `XmlParser.xmlStringToSwaggerJson(String xml);`  | Convert xml string into swagger Json  | 
+| `XmlParser.xmlFileToJavaClass(File file)`| Convert xml file into Java class  | 
+|  `XmlParser.xmlStringToJavaClass(String xml)` | Convert xml string into Java class  | 
 
 The Java class conversion methods are there to increase the development possibilities for people using the module and to offer export methods in YAML instead of Json or the generation of PDF, HTML, etc. 
 
