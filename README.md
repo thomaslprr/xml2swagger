@@ -27,7 +27,7 @@ _for example `java -jar xml2swagger.jar -f desktop/perso/example1.xml`_
 -------------**or**-------------
 
 
-`java -jar xml2swagger.jar -s <xml-string>` 
+`java -jar xml2swagger.jar -s "<xml-string>"` 
 
 _for example `java -jar xml2swagger.jar -s "<global> <rest>...</rest> </global>"`_
 
@@ -58,10 +58,14 @@ The Java class conversion methods are there to increase the development possibil
 ## Dependancies
 
 #### JAXB (Java Architecture for XML Binding)
+_Version: 2.1_
+
 Allows you to transform the XML structure into a Java class
 
-#### GSON
-Gson is an open source Java library for serializing and deserializing Java objects in JSON
+#### JSON Library
+_Version: 20210307_
+
+JSON Library is an open source Java library for serializing and deserializing Java objects in JSON
 
 ## Module operation
-The module takes an XML file as input which it will convert into Java classes (thanks to JAXB). Once the Java classes have been obtained, the module will create the json swagger 2.0 using the GSON library. The module will return the JSON code.
+The module takes an XML file as input which it will convert into Java classes (thanks to JAXB). Once the Java classes have been obtained, the module will create the json swagger 2.0 using the JSON library. The module will return the JSON code.
