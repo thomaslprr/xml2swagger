@@ -69,3 +69,7 @@ JSON Library is an open source Java library for serializing and deserializing Ja
 
 ## Module operation
 The module takes an XML file as input which it will convert into Java classes (thanks to JAXB). Once the Java classes have been obtained, the module will create the json swagger 2.0 using the JSON library. The module will return the JSON code.
+
+## Java structure
+
+![https://github.com/thomaslprr/xml2swagger/blob/master/classDiagram.png]()
