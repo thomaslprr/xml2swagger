@@ -3,18 +3,18 @@ package global;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import definitions.ObjectsBeans;
+import definitions.Objects;
 
 @XmlRootElement(name="global")
 public class Global {
 	
-	private ObjectsBeans objects;
+	private Objects objects;
 
-	public ObjectsBeans getObjects() {
+	public Objects getObjects() {
 		return objects;
 	}
 
-	public void setObjects(ObjectsBeans objects) {
+	public void setObjects(Objects objects) {
 		this.objects = objects;
 	}
 	

@@ -12,7 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import definitions.ObjectBeans;
+import definitions.Object;
 import definitions.PropertyBeans;
 import exceptions.DataTypeException;
 import exceptions.LicenceException;
@@ -50,7 +50,7 @@ public class XmlParser {
 		
 		if(global.getObjects()!=null && global.getObjects().getObject()!=null) {
 		JSONObject definitions = new JSONObject();
-		for(ObjectBeans object : global.getObjects().getObject()) {
+		for(Object object : global.getObjects().getObject()) {
 			
 			if(object.getName()==null || object.getName().trim().equals("")) {
 				throw new NameObjectException(object.getName());

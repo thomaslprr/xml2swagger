@@ -3,12 +3,12 @@ package global;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import header.InfoBeans;
+import header.Info;
 import paths.Paths;
 
 public class Rest {
 
-	private InfoBeans info;
+	private Info info;
 	private String basePath;
 	private String host;
 	
@@ -32,7 +32,7 @@ public class Rest {
 	}
 
 	@XmlElement(name="info")
-	public InfoBeans getInfo() {
+	public Info getInfo() {
 		return info;
 	}
 
@@ -54,7 +54,7 @@ public class Rest {
 		this.paths = paths;
 	}
 
-	public void setInfo(InfoBeans info) {
+	public void setInfo(Info info) {
 		this.info = info;
 	}
 

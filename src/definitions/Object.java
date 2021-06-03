@@ -3,7 +3,7 @@ package definitions;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class ObjectBeans {
+public class Object {
 	
 	private String name;
 	
