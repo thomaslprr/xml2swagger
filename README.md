@@ -72,4 +72,4 @@ The module takes an XML file as input which it will convert into Java classes (t
 
 ## Java structure
 
-![https://github.com/thomaslprr/xml2swagger/blob/master/classDiagram.png]()
+![](https://github.com/thomaslprr/xml2swagger/blob/master/classDiagram.png)
