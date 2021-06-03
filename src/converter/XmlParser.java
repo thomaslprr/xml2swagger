@@ -31,7 +31,12 @@ import security.Validator;
 
 public class XmlParser {
 	
-	
+	/**
+	 * Convert a Global Java object to JSON Object
+	 * @param global Global object
+	 * @return Swagger 2.0 Documentation in JSON format
+	 * @throws Exception
+	 */
 	private static JSONObject xmlToSwaggerJson(Global global) throws Exception {
 		
 		if(global.getRest()==null) {
@@ -428,6 +433,12 @@ public class XmlParser {
 
 	}
 	
+	/**
+	 * Convert a common data type String into Swagger Type and Format
+	 * @param dataType
+	 * @return String with the Swagger Type and Format corresponding to the dataType input
+	 * @throws DataTypeException
+	 */
 	private static String dataTypeToTypeAndFormat(String dataType) throws DataTypeException {
 		
 		if(dataType==null || dataType.equals("")) {
@@ -466,6 +477,11 @@ public class XmlParser {
 		}
 	}
 	
+	/**
+	 * Convert the content of a file into a Swagger Json documentation
+	 * @param file path of the file with its name and .xml extension at the end
+	 * @return Global object
+	 */
 	public static String xmlFileToSwaggerJson(File file) {
 		try {
 			
@@ -486,6 +502,11 @@ public class XmlParser {
 		}
 	}
 	
+	/**
+	 * Convert a XML String into a Swagger Json documentation
+	 * @param xml XML input
+	 * @return Global object
+	 */
 	public static String xmlStringToSwaggerJson(String xml) {
 		try {
 			
@@ -508,6 +529,11 @@ public class XmlParser {
 		}
 	}
 	
+	/**
+	 * Convert the content of a file into a java class
+	 * @param file path of the file with its name and .xml extension at the end
+	 * @return Global object
+	 */
 	public static Global xmlFileToJavaClass(File file) {
 		try {
 			
@@ -524,10 +550,13 @@ public class XmlParser {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
+	}	
 
-	
+	/**
+	 * Convert a XML String into a Global Java class
+	 * @param xml XML input
+	 * @return Global object
+	 */
 	public static Global xmlStringToJavaClass(String xml) {
 		try {
 			
@@ -547,6 +576,4 @@ public class XmlParser {
 			return null;
 		}
 	}
-	
-
 }
