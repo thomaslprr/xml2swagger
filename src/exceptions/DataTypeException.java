@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Exception thrown if the type entered is not correct
+ */
 public class DataTypeException extends Exception{
 
 	public DataTypeException(String dataType) {

@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Exception thrown if an object does not have a name
+ */
 public class NameObjectException extends Exception {
 
 	public NameObjectException(String nameValue) {

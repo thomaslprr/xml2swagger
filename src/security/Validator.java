@@ -8,8 +8,13 @@ import exceptions.SchemesException;
 
 public class Validator {
 
+	/**
+	 * Checks the correct entry of a scheme by verifying that the entry belongs to the possible schemes with Swagger
+	 * @param schemesList
+	 * @throws SchemesException
+	 */
 	public static void SchemesValidator(List<String> schemesList) throws SchemesException {
-		
+		//Definition of all the possible schemes value
 		List<String> possibleSchemes = new ArrayList<>();
 		possibleSchemes.add("http");
 		possibleSchemes.add("https");
@@ -32,12 +37,14 @@ public class Validator {
 						+ "http, https, ws, wss are the only possible values \n"
 						+ "\""+s+"\" is not a correct value.");
 			}
-		}
-		
-		
-		
+		}	
 	}
 	
+	/**
+	 * Checks the correct entry of a method type by verifying that the method belongs to the existing methods with Swagger
+	 * @param methodType
+	 * @throws MethodException
+	 */
 	public static void methodValidator(String methodType) throws MethodException {
 		List<String> possibleMethodsType = new ArrayList<>();
 		possibleMethodsType.add("get");
@@ -52,23 +59,25 @@ public class Validator {
 		}
 	}
 	
+	/**
+	 * Checks the correct entry of a method response by verifying that the response 
+	 * returns either "default" or a valid html status code (between 100 and 599)
+	 * @param methodType
+	 * @throws Exception
+	 */
 	public static void isResponseValid(String methodType) throws Exception {
 		if(!methodType.equals("default")) {
 			try {
 				int number = Integer.parseInt(methodType);
 				if(! (number>=100&&number<=599)) {
 					throw new Exception("Response name can only be \"default\" or a HTTP Status Code (number between 100 and 599)\n"
-							+ "number"+ " is not between 100 and 599");
-					
+							+ "number"+ " is not between 100 and 599");	
 				}
 			}catch(NumberFormatException e) {
 				throw new Exception("Response name can only be \"default\" or a HTTP Status Code (number between 100 and 599)\n"
 						+ "\""+methodType+"\" is not a correct value");
 			}	
-
-		}
-		
-		
+		}		
 	}
 	
 }

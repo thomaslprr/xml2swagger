@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Exception thrown if the same tag is present twice
+ */
 public class TagException extends Exception {
 
 	public TagException(String tagName) {

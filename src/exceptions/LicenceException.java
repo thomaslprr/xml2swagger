@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Exception thrown if a licence url is entered but no licence name refers to that url.
+ */
 public class LicenceException extends Exception{
 
 	public LicenceException() {

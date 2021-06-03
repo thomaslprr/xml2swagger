@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Exception thrown if a path is empty or does not start with a slash
+ */
 public class PathException extends Exception {
 
 	public PathException(String path) {
