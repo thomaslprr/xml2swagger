@@ -58,9 +58,13 @@ The Java class conversion methods are there to increase the development possibil
 ## Dependancies
 
 #### JAXB (Java Architecture for XML Binding)
+_Version: 2.1_
+
 Allows you to transform the XML structure into a Java class
 
 #### JSON Library
+_Version: 20210307_
+
 JSON Library is an open source Java library for serializing and deserializing Java objects in JSON
 
 ## Module operation
