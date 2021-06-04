@@ -47,10 +47,10 @@ Then you will benefit from four methods :
 
 | Method  | Description   |  
 |---|---|
-| `XmlParser.xmlFileToSwaggerJson(File file);`  | Convert xml file to swagger Json  | 
-| `XmlParser.xmlStringToSwaggerJson(String xml);`  | Convert xml string to swagger Json  | 
-| `XmlParser.xmlFileToJavaClass(File file)`| Convert xml file to Java class  | 
-|  `XmlParser.xmlStringToJavaClass(String xml)` | Convert xml string to Java class  | 
+| `XmlParser.xmlFileToSwaggerJson(File file);`  | Convert xml file into swagger Json  | 
+| `XmlParser.xmlStringToSwaggerJson(String xml);`  | Convert xml string into swagger Json  | 
+| `XmlParser.xmlFileToJavaClass(File file)`| Convert xml file into Java class  | 
+|  `XmlParser.xmlStringToJavaClass(String xml)` | Convert xml string into Java class  | 
 
 The Java class conversion methods are there to increase the development possibilities for people using the module and to offer export methods in YAML instead of Json or the generation of PDF, HTML, etc. 
 
@@ -69,3 +69,7 @@ JSON Library is an open source Java library for serializing and deserializing Ja
 
 ## Module operation
 The module takes an XML file as input which it will convert into Java classes (thanks to JAXB). Once the Java classes have been obtained, the module will create the json swagger 2.0 using the JSON library. The module will return the JSON code.
+
+## Java structure
+
+![](https://github.com/thomaslprr/xml2swagger/blob/master/classDiagram.png)
