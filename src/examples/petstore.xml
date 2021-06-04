@@ -377,9 +377,7 @@
 			
 			
 			</path>
-			
-
-			
+		
 			<path>
 				<name>/pet/findByStatus</name>
 				<methods>
@@ -426,6 +424,65 @@
 									</items>
 								
 								</schema>
+							
+							</response>
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>
+			
+			<path>
+				<name>/pet/findByTags</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>pet</tag></tags>
+						<summary>Finds Pets by tag</summary>
+						<description>Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.</description>
+						<operationId>findPetsByTags</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+
+							<parameter>
+								<name>tags</name>
+								<in>query</in>
+								<description>Tags to filter by</description>
+								<required>true</required>
+								<type>array</type>
+								<items>
+									<type>string</type>
+								</items>
+								<collectionFormat>multi</collectionFormat>
+							
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<type>array</type>
+									<items>
+										<ref>Pet</ref>
+									</items>
+								
+								</schema>
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid tag value</description>
 							
 							</response>
 						

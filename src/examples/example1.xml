@@ -85,8 +85,8 @@
 		</schemes>
 		<tags>
 			<tag>
-				<tag-name>color v2</tag-name>
-				<tag-description>Everything about color</tag-description>
+				<name>color v2</name>
+				<description>Everything about color</description>
 				<external-docs>
 					<description>Find out more</description>
 					<url>https://en.wikipedia.org/wiki/Color</url>

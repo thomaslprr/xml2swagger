@@ -464,12 +464,16 @@ public class XmlParser {
 						
 						JSONObject itemsObject = new JSONObject();
 						itemsObject.put("type", param.getItems().getType());
-						JSONArray enumArray = new JSONArray();
-						for(String s : param.getItems().getEnums().getEnum()) {
-							enumArray.put(s);
+						if(param.getItems().getEnums()!=null && param.getItems().getEnums().getEnum()!=null) {
+							JSONArray enumArray = new JSONArray();
+							for(String s : param.getItems().getEnums().getEnum()) {
+								enumArray.put(s);
+							}
+							itemsObject.put("enum", enumArray);
 						}
-						itemsObject.put("enum", enumArray);
-						itemsObject.put("default", param.getItems().getDefault());
+						if(param.getItems().getDefault()!=null) {
+							itemsObject.put("default", param.getItems().getDefault());
+						}
 						
 						paramJson.put("items", itemsObject);
 						
