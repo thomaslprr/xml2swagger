@@ -56,7 +56,7 @@
 				<property>
 					<name>name</name>
 					<type>string</type>
-					<exemple>doggie</exemple>
+					<example>doggie</example>
 				</property>
 				<property>
 					<name>photoUrls</name>
@@ -186,6 +186,40 @@
 		</schemes>
 		
 		<paths>
+		
+			<path>
+				<name>/pet</name>
+				<methods>
+				<method>
+					<type>post</type>
+					<tags><tag>pet</tag></tags>
+					<summary>Add a new pet to the store</summary>
+					<operation-id>addPet</operation-id>
+					<consumes>
+						<consume>application/json</consume>
+						<consume>application/xml</consume>
+					</consumes>
+					<parameters>
+						<parameter>
+						<in>body</in>
+						<name>body</name>
+						<description>Pet object that needs to be added to the store</description>
+						<required>true</required>
+						<schema><ref>Pet</ref></schema>
+						</parameter>
+					</parameters>
+					<responses>
+						<response>
+							<name>405</name>
+							<description>Invalid input</description>
+						</response>
+					</responses>
+				
+				
+				</method>
+				</methods>
+		
+			</path>
 		
 		
 		</paths>

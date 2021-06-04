@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import definitions.Object;
-import definitions.PropertyBeans;
+import definitions.Property;
 import exceptions.DataTypeException;
 import exceptions.LicenceException;
 import exceptions.NameObjectException;
@@ -82,7 +82,7 @@ public class XmlParser {
 			}
 			
 			if(object.getProperties().getProperties()!=null) {
-			for(PropertyBeans property : object.getProperties().getProperties()) {
+			for(Property property : object.getProperties().getProperties()) {
 				if(property.getName()==null) {
 					throw new Exception("Property name can't be null. Each property of an object must have a name. \n "
 							+ "You must have a <name> tag for each property of an object. \n");
@@ -117,6 +117,11 @@ public class XmlParser {
 						enumTab.put(s);
 					}
 					propertyJson.put("enum", enumTab);
+				}
+				
+				//example management
+				if(property.getExample()!=null) {
+					propertyJson.put("example", property.getExample());
 				}
 				
 				

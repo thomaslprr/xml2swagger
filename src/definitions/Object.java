@@ -7,7 +7,7 @@ public class Object {
 	
 	private String name;
 	
-	private PropertiesBeans properties;
+	private Properties properties;
 	
 	public String getName() {
 		return name;
@@ -19,11 +19,11 @@ public class Object {
 
 
 	@XmlElement(name = "properties")
-	public PropertiesBeans getProperties() {
+	public Properties getProperties() {
 		return properties;
 	}
 
-	public void setProperties(PropertiesBeans properties) {
+	public void setProperties(Properties properties) {
 		this.properties = properties;
 	}	
 

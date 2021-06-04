@@ -2,7 +2,7 @@ package definitions;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class PropertyBeans {
+public class Property {
 	
 	private String name;
 	private String type;
@@ -12,6 +12,8 @@ public class PropertyBeans {
 	private Item items;
 	
 	private Enums enums;
+	
+	private String example;
 
 
 	@XmlElement(name = "name")
@@ -56,5 +58,14 @@ public class PropertyBeans {
 	public void setEnums(Enums enums) {
 		this.enums = enums;
 	}
+
+	public String getExample() {
+		return example;
+	}
+
+	public void setExample(String example) {
+		this.example = example;
+	}
+	
 	
 }
