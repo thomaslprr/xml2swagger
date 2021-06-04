@@ -39,17 +39,28 @@ public class XmlParser {
 	 */
 	private static JSONObject xmlToSwaggerJson(Global global) throws Exception {
 		
+		/**
+		 * Throw exception if Rest tag does not exist
+		 */
 		if(global.getRest()==null) {
 			throw new RestException();
 		}
 		
+		/**
+		 * throw exception if Info tag does not exist
+		 */
 		if(global.getRest().getInfo()==null) {
 			throw new Exception("You must have a <info> tag in the Rest object");
 		}
 		
+		/**
+		 * throw exception if Paths tag does not exist
+		 */
 		if(global.getRest().getPaths()==null) {
 			throw new Exception("You must have a <paths> tag in the Rest object");
 		}
+		
+		//Objects definition 
 		
 		JSONObject swaggerJson = new JSONObject();
 		
@@ -134,17 +145,33 @@ public class XmlParser {
 		}
 		
 		
+		//Swagger definition 
+		
 		swaggerJson.put("swagger","2.0");
 		
+		if(global.getRest().getBasePath()!=null) {
+			swaggerJson.put("basePath", global.getRest().getBasePath());
+		}
+		if(global.getRest().getHost()!=null) {
+			swaggerJson.put("host", global.getRest().getHost());
+		}
+		
+		//throw exception if no version tag in the info tag
 		if(global.getRest().getInfo().getVersion()==null) {
 			throw new Exception("You must have a <version> tag in the Info object");
 		}
+		//throw exception if no title tag in the info tag
 		if(global.getRest().getInfo().getTitle()==null) {
 			throw new Exception("You must have a <title> tag in the Info object");
 		}
 		
+		/**
+		 * Rest info management
+		 */
 		
+		//general informations
 		JSONObject infoJson = new JSONObject();
+		
 		if(global.getRest().getInfo().getDescription()!=null) {
 			infoJson.put("description", global.getRest().getInfo().getDescription());
 		}
@@ -154,7 +181,7 @@ public class XmlParser {
 			infoJson.put("termsOfService", global.getRest().getInfo().getTermsOfService());
 		}
 		
-		
+		//contact informations
 		JSONObject contactJson = new JSONObject();
 		
 		if(global.getRest().getInfo().getContactName()!=null) {
@@ -168,6 +195,7 @@ public class XmlParser {
 			contactJson.put("url",global.getRest().getInfo().getContactUrl());
 		}
 		
+		//license informations
 		JSONObject licenseJson = new JSONObject();
 		if(global.getRest().getInfo().getLicenceName()!=null) {
 			licenseJson.put("url", global.getRest().getInfo().getLicenceUrl());
@@ -179,20 +207,12 @@ public class XmlParser {
 				licenseJson.put("name",global.getRest().getInfo().getLicenceName());
 			}
 
-		}
-
-		
+		}	
 		
 		infoJson.put("contact",contactJson);
 		infoJson.put("license", licenseJson);
 		
 		swaggerJson.put("info", infoJson);
-		if(global.getRest().getBasePath()!=null) {
-			swaggerJson.put("basePath", global.getRest().getBasePath());
-		}
-		if(global.getRest().getHost()!=null) {
-			swaggerJson.put("host", global.getRest().getHost());
-		}
 		
 		/**
 		 * Header tags
@@ -234,12 +254,13 @@ public class XmlParser {
 				}
 				tagsList.put(t);
 			}
-			swaggerJson.put("tags", tagsList);
-			
+			swaggerJson.put("tags", tagsList);			
 		}
 		
 		
-		
+		/**
+		 * Schemes
+		 */
 		if(global.getRest().getSchemes()!=null && global.getRest().getSchemes().getScheme()!=null) {
 			JSONArray schemesArray = new JSONArray();
 			Validator.SchemesValidator(global.getRest().getSchemes().getScheme());
@@ -249,6 +270,10 @@ public class XmlParser {
 			swaggerJson.put("schemes", schemesArray);
 		}
 		
+		
+		/**
+		 * Paths
+		 */
 		JSONObject pathsJson = new JSONObject();
 		
 		for(Path p : global.getRest().getPaths().getPath()) {
@@ -263,6 +288,9 @@ public class XmlParser {
 			
 			JSONObject pathJson = new JSONObject();
 			
+			/**
+			 * Methods management for each path
+			 */
 			if(p.getMethods().getMethod()!=null) {
 			
 			for(Method m : p.getMethods().getMethod()) {
@@ -271,6 +299,9 @@ public class XmlParser {
 				
 				JSONObject method = new JSONObject();
 				
+				/**
+				 * Tags
+				 */
 				if(m.getTags()!=null && m.getTags().getTag()!=null) {
 					JSONArray tagsList2 = new JSONArray();
 					for(String s : m.getTags().getTag()) {
@@ -279,10 +310,16 @@ public class XmlParser {
 					method.put("tags", tagsList2);
 				}
 				
+				/**
+				 * Operation id
+				 */
 				if(m.getOperationId()!=null) {
 					method.put("operationId", m.getOperationId());
 				}
 				
+				/**
+				 * Produces management
+				 */
 				if(m.getProduces()!=null) {
 					JSONArray producesJson = new JSONArray();
 					if(m.getProduces().getProduceType()!=null) {
@@ -293,6 +330,9 @@ public class XmlParser {
 					method.put("produces", producesJson);
 				}
 				
+				/**
+				 * Consumes management
+				 */
 				if(m.getConsumes()!=null) {
 					JSONArray consumesJson = new JSONArray();
 					if(m.getConsumes().getConsumeType()!=null) {
@@ -304,13 +344,20 @@ public class XmlParser {
 					method.put("consumes", consumesJson);
 				}
 				
-
+				/**
+				 * Parameters management
+				 */
 				JSONArray parametersJson = new JSONArray();
 				if(m.getParameters()!=null && m.getParameters().getParameter() !=null) {
 					
 				for(Parameter param : m.getParameters().getParameter()) {
 					
 					JSONObject paramJson = new JSONObject();
+					
+					/**
+					 * verification of the presence of all mandatory tags 
+					 * In, Name, Schema if In = "body", Type if In != "body"
+					 */
 					
 					if(param.getIn()==null) {
 						throw new Exception("You must have a <in> tag in Parameter object");
@@ -339,6 +386,7 @@ public class XmlParser {
 						paramJson.put("description", param.getDescription());
 					}
 					
+					//parameter type and format gestion
 					if(!param.getIn().equals("body")) {
 						String type="";
 						String format="";
@@ -359,7 +407,7 @@ public class XmlParser {
 						paramJson.put("format", format);
 									
 					}
-					
+					//schema parameter gestion
 					if(param.getSchema()!=null) {
 						JSONObject schemaJson= new JSONObject();
 						if(param.getSchema().getRef()==null) {
@@ -373,19 +421,27 @@ public class XmlParser {
 				}
 				method.put("parameters", parametersJson);
 				
+				
 				if(m.isDeprecated()) {
 					method.put("deprecated", true);
 				}
+				
+				//method summary management
 				if(m.getSummary()!=null) {
 					if(m.getSummary().length()>=120) {
 						throw new SummaryException();
 					}
 					method.put("summary", m.getSummary());
 				}
+				//method description management
 				if(m.getDescription()!=null) {
 					method.put("description", m.getDescription());
 				}
 				
+				
+				/**
+				 * Response management
+				 */
 				if(m.getResponses()==null) {
 					throw new Exception("You must have a <responses> tag in the Method object");
 				}
@@ -393,19 +449,21 @@ public class XmlParser {
 				if(m.getResponses().getResponse()!=null) {
 				JSONObject response = new JSONObject();
 				for(Response r : m.getResponses().getResponse()) {
-					
+					//checking the correct format of the response
 					Validator.isResponseValid(r.getName());
 					
+					//throw exception if name tag of the response does not exist
 					if(r.getName()==null) {
 						throw new Exception("You must have a <name> tag in Response Object");
 					}
+					//throw exception if description tag of the response does not exist
 					if(r.getDescription()==null) {
 						throw new Exception("You must have a <description> tag in Response Object");
 					}
 					
 					JSONObject description = new JSONObject() ;
 					description.put("description", r.getDescription());
-					
+					//schema response management
 					if(r.getSchema()!=null) {
 						JSONObject schemaJson= new JSONObject();
 						if(r.getSchema().getRef()==null) {
