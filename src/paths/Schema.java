@@ -3,6 +3,10 @@ package paths;
 public class Schema {
 	
 	private String ref;
+	
+	private String type;
+	
+	private Items items;
 
 	public String getRef() {
 		return ref;
@@ -10,6 +14,22 @@ public class Schema {
 
 	public void setRef(String ref) {
 		this.ref = ref;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Items getItems() {
+		return items;
+	}
+
+	public void setItems(Items items) {
+		this.items = items;
 	}
 	
 	

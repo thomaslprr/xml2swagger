@@ -498,7 +498,20 @@ public class XmlParser {
 					JSONObject description = new JSONObject() ;
 					description.put("description", r.getDescription());
 					//schema response management
-					if(r.getSchema()!=null) {
+					if(r.getSchema()!=null && r.getSchema().getType()!=null && r.getSchema().getType().equals("array")){
+						JSONObject schemaJson = new JSONObject();
+						if(r.getSchema().getItems().getRef()==null) {
+							throw new Exception("You must have a <ref> tag in Items object");
+						}
+						schemaJson.put("type", "array");
+						JSONObject refObject = new JSONObject();
+						refObject.put("$ref", "#/definitions/"+r.getSchema().getItems().getRef());
+						schemaJson.put("items", refObject);
+						description.put("schema", schemaJson);
+						
+						
+					}
+					else if(r.getSchema()!=null ){
 						JSONObject schemaJson= new JSONObject();
 						if(r.getSchema().getRef()==null) {
 							throw new Exception("You must have a <ref> tag in Schema object");

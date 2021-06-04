@@ -314,7 +314,130 @@
 				</method>
 				</methods>
 			</path>
-		
+			
+			<path>
+				<name>/pet/{petId}/uploadImage</name>
+				<methods>
+				
+					<method>
+					<type>post</type>
+					<tags><tag>pet</tag></tags>
+					<summary>uploads an image</summary>
+					<operationId>uploadFile</operationId>
+					<consumes>
+						<consume>multipart/form-data</consume>
+					</consumes>
+					<produces>
+						<produce>application/json</produce>
+					</produces>
+					<parameters>
+					
+						<parameter>
+							<name>petId</name>
+							<in>path</in>
+							<description>ID of pet to update</description>
+							<required>true</required>
+							<type>long</type>
+						
+						</parameter>
+						
+						<parameter>
+							<name>additionalMetadata</name>
+							<in>formData</in>
+							<description>Additional data to pass to server</description>
+							<required>false</required>
+							<type>string</type>
+						
+						</parameter>
+						
+						<parameter>
+							<name>file</name>
+							<in>formData</in>
+							<description>file to upload</description>
+							<required>false</required>
+							<type>file</type>
+						
+						</parameter>
+					
+					</parameters>
+					
+					<responses>
+						<response>
+							<name>200</name>
+							<description>successful operation</description>
+							<schema><ref>ApiResponse</ref></schema>
+						</response>
+					</responses>
+					
+					</method>
+				
+				
+				
+				</methods>
+			
+			
+			</path>
+			
+
+			
+			<path>
+				<name>/pet/findByStatus</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>pet</tag></tags>
+						<summary>Finds Pets by status</summary>
+						<description>Multiple status values can be provided with comma separated strings</description>
+						<operationId>findPetsByStatus</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+							<parameter>
+								<name>status</name>
+								<in>query</in>
+								<description>Status values that need to be considered for filter</description>
+								<required>true</required>
+								<type>array</type>
+								<items>
+									<type>string</type>
+									<enums>
+										<enum>available</enum>
+										<enum>pending</enum>
+										<enum>sold</enum>	
+									</enums>
+									<default>available</default>
+								</items>
+								<collectionFormat>multi</collectionFormat>
+							
+							</parameter>
+						</parameters>
+						
+						<responses>
+	
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<type>array</type>
+									<items>
+										<ref>Pet</ref>
+									</items>
+								
+								</schema>
+							
+							</response>
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>
+
 		
 		</paths>
 		

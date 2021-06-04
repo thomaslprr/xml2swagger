@@ -8,6 +8,8 @@ public class Parameter {
 	private Schema schema;
 	private String type;
 	private String description;
+	private Items items;
+	private String collectionFormat;
 	
 	
 	public String getIn() {
@@ -46,6 +48,18 @@ public class Parameter {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Items getItems() {
+		return items;
+	}
+	public void setItems(Items items) {
+		this.items = items;
+	}
+	public String getCollectionFormat() {
+		return collectionFormat;
+	}
+	public void setCollectionFormat(String collectionFormat) {
+		this.collectionFormat = collectionFormat;
 	}
 	
 	
