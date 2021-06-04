@@ -82,6 +82,7 @@ public class XmlParser {
 			}
 			
 			if(object.getProperties().getProperties()!=null) {
+				JSONArray propertyRequired = new JSONArray();
 			for(Property property : object.getProperties().getProperties()) {
 				if(property.getName()==null) {
 					throw new Exception("Property name can't be null. Each property of an object must have a name. \n "
@@ -124,6 +125,15 @@ public class XmlParser {
 					propertyJson.put("example", property.getExample());
 				}
 				
+				//description management
+				if(property.getDescription()!=null) {
+					propertyJson.put("description", property.getDescription());
+				}
+				
+				//required management
+				if(property.isRequired()) {
+					propertyRequired.put(property.getName());
+				}
 				
 				if(property.getType().equals("array")) {
 					JSONObject arrayJson = new JSONObject();
@@ -158,6 +168,8 @@ public class XmlParser {
 				propertiesJson.put("properties", properties);
 				
 			}
+			if(propertyRequired.length()>0)
+				propertiesJson.put("required", propertyRequired);
 			}
 			
 			definitions.put(object.getName(), propertiesJson);

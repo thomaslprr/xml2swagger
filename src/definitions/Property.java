@@ -14,6 +14,10 @@ public class Property {
 	private Enums enums;
 	
 	private String example;
+	
+	private String description;
+	
+	private boolean required;
 
 
 	@XmlElement(name = "name")
@@ -66,6 +70,23 @@ public class Property {
 	public void setExample(String example) {
 		this.example = example;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isRequired() {
+		return required;
+	}
+
+	public void setRequired(boolean required) {
+		this.required = required;
+	}
+	
 	
 	
 }

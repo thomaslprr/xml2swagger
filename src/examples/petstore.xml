@@ -57,11 +57,13 @@
 					<name>name</name>
 					<type>string</type>
 					<example>doggie</example>
+					<required>true</required>
 				</property>
 				<property>
 					<name>photoUrls</name>
 					<type>array</type>
 					<items><type>string</type></items>
+					<required>true</required>
 				</property>
 				<property>
 					<name>tags</name>
@@ -134,6 +136,55 @@
 			</properties>
 		
 		</object>
+		
+		<object>
+			<name>User</name>
+			<properties>
+				<property>
+					<name>id</name>
+					<type>long</type>
+				</property>
+				
+				<property>
+					<name>username</name>
+					<type>string</type>
+				</property>
+				
+				<property>
+					<name>firstName</name>
+					<type>string</type>
+				</property>
+				
+				<property>
+					<name>lastName</name>
+					<type>string</type>
+				</property>
+				
+				<property>
+					<name>email</name>
+					<type>string</type>
+				</property>
+				
+				<property>
+					<name>password</name>
+					<type>string</type>
+				</property>
+				
+				<property>
+					<name>phone</name>
+					<type>string</type>
+				</property>
+			
+				<property>
+					<name>userStatus</name>
+					<type>integer</type>
+					<description>User Status</description>
+				</property>
+			
+			</properties>
+		
+		</object>
+
 
 	</objects>
 
@@ -217,8 +268,51 @@
 				
 				
 				</method>
+				
+				<method>
+				
+					<type>put</type>
+					<tags>
+						<tag>pet</tag>
+					</tags>
+					<summary>Update an existing pet</summary>
+					<consumes>
+						<consume>application/json</consume>
+						<consume>application/xml</consume>
+					</consumes>
+					
+					<produces>
+						<produce>application/json</produce>
+						<produce>application/xml</produce>
+					</produces>
+					<parameters>
+						<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>Pet object that needs to be added to the store</description>
+							<required>true</required>
+							<schema><ref>Pet</ref></schema>
+						</parameter>
+					</parameters>
+					<responses>
+						<response>
+							<name>400</name>
+							<description>Invalid ID supplied</description>
+						</response>
+						
+						<response>
+							<name>404</name>
+							<description>Pet not found</description>
+						</response>
+						
+						<response>
+							<name>405</name>
+							<description>Validation exception</description>
+						</response>
+					
+					</responses>
+				</method>
 				</methods>
-		
 			</path>
 		
 		
