@@ -6,6 +6,8 @@ public class Item {
 	
 	private String type;
 	
+	private String ref;
+	
 	@XmlElement(name = "type")
 	public String getType() {
 		return type;
@@ -13,6 +15,14 @@ public class Item {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getRef() {
+		return ref;
+	}
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
+	
+	
 
 	
 	

@@ -8,7 +8,7 @@ public class Object {
 	private String name;
 	
 	private PropertiesBeans properties;
-
+	
 	public String getName() {
 		return name;
 	}
@@ -25,8 +25,6 @@ public class Object {
 
 	public void setProperties(PropertiesBeans properties) {
 		this.properties = properties;
-	}
-	
-	
+	}	
 
 }

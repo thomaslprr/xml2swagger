@@ -110,23 +110,40 @@ public class XmlParser {
 					propertyJson.put("format", format);
 				}
 				
+				//enum management
+				if(property.getEnums()!=null&&property.getEnums().getEnum()!=null) {
+					JSONArray enumTab = new JSONArray();
+					for(String s : property.getEnums().getEnum()) {
+						enumTab.put(s);
+					}
+					propertyJson.put("enum", enumTab);
+				}
+				
+				
 				if(property.getType().equals("array")) {
 					JSONObject arrayJson = new JSONObject();
 					if(property.getItems()==null) {
 						throw new Exception("If property type is equals to \"array\", you should have a <items> tag.");
 					}
-					String dataTypeItems = dataTypeToTypeAndFormat(property.getItems().getType().toLowerCase());
-					String typeItems = dataTypeItems.split("/")[0];
-					String formatItems;
-					try {
-						 formatItems = dataTypeItems.split("/")[1];
-						}catch(ArrayIndexOutOfBoundsException e) {
-							formatItems = "";
+					
+					if(property.getItems().getRef()!=null) {
+						arrayJson.put("$ref", "#/definitions/"+property.getItems().getRef());
+					}else {
+						String dataTypeItems = dataTypeToTypeAndFormat(property.getItems().getType());
+						String typeItems = dataTypeItems.split("/")[0];
+						String formatItems;
+						try {
+							 formatItems = dataTypeItems.split("/")[1];
+							}catch(ArrayIndexOutOfBoundsException e) {
+								formatItems = "";
+							}
+						arrayJson.put("type", typeItems);
+						if(!formatItems.equals("")) {
+							arrayJson.put("format", property.getItems().getType());
 						}
-					arrayJson.put("type", typeItems);
-					if(!formatItems.equals("")) {
-						arrayJson.put("format", property.getItems().getType());
 					}
+					
+					
 					
 					propertyJson.put("items", arrayJson);
 				}
@@ -275,7 +292,7 @@ public class XmlParser {
 		 * Paths
 		 */
 		JSONObject pathsJson = new JSONObject();
-		
+		if(global.getRest().getPaths().getPath()!=null) {
 		for(Path p : global.getRest().getPaths().getPath()) {
 			
 			if(p.getName().equals("") || p.getName().charAt(0)!='/') {
@@ -487,6 +504,8 @@ public class XmlParser {
 		
 		swaggerJson.put("paths", pathsJson);
 		
+		}
+		
 		return swaggerJson;
 
 	}
@@ -504,7 +523,7 @@ public class XmlParser {
 		}
 		
 
-		switch(dataType) {
+		switch(dataType.toLowerCase()) {
 		case "integer":
 			return "integer/int32";
 		case "long":
@@ -523,7 +542,7 @@ public class XmlParser {
 			return "boolean";
 		case "date":
 			return "string/date";
-		case "dateTime":
+		case "datetime":
 			return "string/date-time";
 		case "password":
 			return "string/password";

@@ -1,0 +1,196 @@
+<global>
+
+	<objects>
+	
+		<object>
+			<name>ApiResponse</name>
+			<properties>
+				<property>
+					<name>code</name>
+					<type>integer</type>
+				</property>
+				<property>
+					<name>type</name>
+					<type>string</type>
+				</property>
+				<property>
+					<name>message</name>
+					<type>string</type>
+				</property>
+			
+			</properties>
+		
+		</object>
+
+		<object>
+			<name>Category</name>
+			<properties>
+				<property>
+					<name>id</name>
+					<type>long</type>
+				</property>
+				<property>
+					<name>name</name>
+					<type>string</type>
+				</property>
+				<property>
+					<name>message</name>
+					<type>string</type>
+				</property>
+			
+			</properties>
+		
+		</object>
+		
+		<object>
+			<name>Pet</name>
+			<properties>
+				<property>
+					<name>id</name>
+					<type>long</type>
+				</property>
+				<property>
+					<name>category</name>
+					<ref>Category</ref>
+				</property>
+				<property>
+					<name>name</name>
+					<type>string</type>
+					<exemple>doggie</exemple>
+				</property>
+				<property>
+					<name>photoUrls</name>
+					<type>array</type>
+					<items><type>string</type></items>
+				</property>
+				<property>
+					<name>tags</name>
+					<type>array</type>
+					<items><ref>Tag</ref></items>
+				</property>
+				<property>
+					<name>status</name>
+					<type>string</type>
+					<description>pet status in the store</description>
+					<enums>
+						<enum>available</enum><enum>pending</enum><enum>sold</enum>
+					</enums>
+				</property>
+			</properties>
+		
+		</object>
+		
+		<object>
+			<name>Tag</name>
+			<properties>
+				<property>
+					<name>id</name>
+					<type>long</type>
+				</property>
+				<property>
+					<name>name</name>
+					<type>string</type>
+				</property>
+			
+			</properties>
+		
+		</object>
+		
+		<object>
+			<name>Order</name>
+			<properties>
+				<property>
+					<name>id</name>
+					<type>long</type>
+				</property>
+				<property>
+					<name>petId</name>
+					<type>long</type>
+				</property>
+				<property>
+					<name>quantity</name>
+					<type>integer</type>
+				</property>
+				<property>
+					<name>shipDate</name>
+					<type>dateTime</type>
+				</property>
+				<property>
+					<name>status</name>
+					<type>string</type>
+					<description>Order Status</description>
+					<enums>
+						<enum>placed</enum>
+						<enum>approved</enum>
+						<enum>delivered</enum>
+					
+					</enums>
+				</property>
+				<property>
+					<name>complete</name>
+					<type>boolean</type>
+				</property>
+			
+			</properties>
+		
+		</object>
+
+	</objects>
+
+
+	<rest>
+	
+		<info>
+		
+			<description>This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.</description>
+			<version>1.0.5</version>
+			<title>Swagger Petstore</title>
+			<terms-of-service>http://swagger.io/terms/</terms-of-service>
+			<contact-email>apiteam@swagger.io</contact-email>
+			<licence-name>Apache 2.0</licence-name>
+			<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
+		</info>
+		
+		<host>petstore.swagger.io</host>
+		<basePath>/v2</basePath>
+		
+		<tags>
+			<tag>
+				<name>pet</name>
+				<description>Everything about your Pets</description>
+				<external-docs>
+					<description>Find out more</description>
+					<url>http://swagger.io</url>
+				</external-docs>
+			</tag>
+			
+			<tag>
+				<name>store</name>
+				<description>Access to Petstore orders</description>
+			</tag>
+			
+			<tag>
+				<name>user</name>
+				<description>Operations about user</description>
+				<external-docs>
+					<description>Find out more about our store</description>
+					<url>http://swagger.io</url>
+				</external-docs>
+			</tag>
+		
+		</tags>
+		
+		<schemes>
+			<scheme>https</scheme>
+			<scheme>http</scheme>
+		</schemes>
+		
+		<paths>
+		
+		
+		</paths>
+		
+
+	</rest>
+
+</global>

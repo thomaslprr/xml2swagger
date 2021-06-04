@@ -8,14 +8,14 @@ public class Tag {
 	private String description;
 	private ExternalDocs externalDocs;
 	
-	@XmlElement(name="tag-name")
+	@XmlElement(name="name")
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@XmlElement(name="tag-description")
+	@XmlElement(name="description")
 	public String getDescription() {
 		return description;
 	}

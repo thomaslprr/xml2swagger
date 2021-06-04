@@ -10,6 +10,9 @@ public class PropertyBeans {
 	private String ref;
 	
 	private Item items;
+	
+	private Enums enums;
+
 
 	@XmlElement(name = "name")
 	public String getName() {
@@ -45,10 +48,13 @@ public class PropertyBeans {
 	public void setRef(String ref) {
 		this.ref = ref;
 	}
-	
-	
 
-	
-	
+	public Enums getEnums() {
+		return enums;
+	}
+
+	public void setEnums(Enums enums) {
+		this.enums = enums;
+	}
 	
 }
