@@ -1,6 +1,5 @@
 package paths;
 
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -26,11 +25,11 @@ public class Items {
 	}
 
 	@XmlElement(name="default")
-	public String getDefaulte() {
+	public String getDefault() {
 		return defaulte;
 	}
 
-	public void setDefaulte(String defaulte) {
+	public void setDefault(String defaulte) {
 		this.defaulte = defaulte;
 	}
 

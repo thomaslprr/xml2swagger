@@ -435,7 +435,6 @@ public class XmlParser {
 								format = "";
 							}
 						}
-						
 							
 						paramJson.put("type", type);
 						paramJson.put("format", format);
@@ -450,6 +449,33 @@ public class XmlParser {
 						schemaJson.put("$ref","#/definitions/"+param.getSchema().getRef() );
 						paramJson.put("schema", schemaJson);
 					}
+					
+					if(param.getCollectionFormat()!=null) {
+						paramJson.put("collectionFormat", param.getCollectionFormat());
+					}
+					/**
+					 * Todo: securise input and null value (required or not)
+					 */
+					if(param.getType()!=null && param.getType().equals("array")) {
+						
+						if(param.getItems()==null) {
+							throw new Exception("You must have a <items> tag in the parameter object if parameter type is equal to \"array\" ");
+						}
+						
+						JSONObject itemsObject = new JSONObject();
+						itemsObject.put("type", param.getItems().getType());
+						JSONArray enumArray = new JSONArray();
+						for(String s : param.getItems().getEnums().getEnum()) {
+							enumArray.put(s);
+						}
+						itemsObject.put("enum", enumArray);
+						itemsObject.put("default", param.getItems().getDefault());
+						
+						paramJson.put("items", itemsObject);
+						
+					}
+					
+					
 					parametersJson.put(paramJson);
 				}
 				}
