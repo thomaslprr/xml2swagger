@@ -27,7 +27,9 @@ import paths.Method;
 import paths.Parameter;
 import paths.Path;
 import paths.Response;
-import security.Validator;
+import security.Scope;
+import security.SecurityDefinition;
+import validator.Validator;
 
 public class XmlParser {
 	
@@ -675,6 +677,77 @@ public class XmlParser {
 		swaggerJson.put("paths", pathsJson);
 		
 		}
+		
+		
+		//security definitions 
+		if(global.getRest().getSecurityDefinitions()!=null && global.getRest().getSecurityDefinitions().getSecurityDefinition()!=null) {
+			JSONObject securityDefinitionsJson = new JSONObject();
+			
+			for(SecurityDefinition s : global.getRest().getSecurityDefinitions().getSecurityDefinition()) {
+				
+				JSONObject securityDefinitionJson = new JSONObject();
+				
+				if(s.getAuthorizationUrl()!=null) {
+					securityDefinitionJson.put("authorizationUrl", s.getAuthorizationUrl());
+				}
+				
+				if(s.getDescription()!=null) {
+					securityDefinitionJson.put("description", s.getDescription());
+				}
+				
+				if(s.getFlow()!=null) {
+					securityDefinitionJson.put("flow", s.getFlow());
+				}
+				
+				if(s.getHeaderName()!=null) {
+					securityDefinitionJson.put("name", s.getHeaderName());
+				}
+				
+				if(s.getIn()!=null) {
+					securityDefinitionJson.put("in", s.getIn());
+				}
+				
+				if(s.getTokenUrl()!=null) {
+					securityDefinitionJson.put("tokenUrl", s.getTokenUrl());
+				}
+				
+				if(s.getType()!=null) {
+					securityDefinitionJson.put("type", s.getType());
+				}
+				
+				if(s.getScopes()!=null&& s.getScopes().getScope()!=null) {
+					JSONObject scopesJson = new JSONObject();
+					for(Scope scope : s.getScopes().getScope() ) {
+						if(scope.getDescription()==null) {
+							throw new Exception("You must have a <description> tag in Scope object.");
+						}
+						
+						if(scope.getName()==null) {
+							throw new Exception("You must have a <name> tag in Scope object.");
+						}
+						
+						scopesJson.put(scope.getName(), scope.getDescription());
+					}
+					
+					securityDefinitionJson.put("scopes", scopesJson);
+					
+				}
+				
+				if(s.getSecurityName()==null) {
+					throw new Exception("You must have a <securityName> tag in SecurityDefinition object !");
+				}
+				
+				securityDefinitionsJson.put(s.getSecurityName(), securityDefinitionJson);
+				
+				
+			}
+			
+			swaggerJson.put("securityDefinitions", securityDefinitionsJson);
+			
+			
+			
+		}
+		
 		
 		return swaggerJson;
 

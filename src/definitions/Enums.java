@@ -16,8 +16,5 @@ public class Enums {
 	public void setEnum(List<String> enume) {
 		this.enume = enume;
 	}
-	
-	
-	
 
 }

@@ -1,6 +1,7 @@
 package global;
 
 
+
 import javax.xml.bind.annotation.XmlElement;
 
 import header.Info;
@@ -17,6 +18,7 @@ public class Rest {
 	
 	private Schemes schemes;
 	
+	private SecurityDefinitions securityDefinitions;
 	
 
 	public Schemes getSchemes() {
@@ -74,6 +76,15 @@ public class Rest {
 		this.host = host;
 	}
 
+	public SecurityDefinitions getSecurityDefinitions() {
+		return securityDefinitions;
+	}
+
+	public void setSecurityDefinitions(SecurityDefinitions securityDefinitions) {
+		this.securityDefinitions = securityDefinitions;
+	}
+
+	
 	
 	
 }

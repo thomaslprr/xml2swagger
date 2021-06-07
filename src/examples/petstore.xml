@@ -1224,6 +1224,37 @@
 		
 		</paths>
 		
+		<securityDefinitions>
+			<securityDefinition>
+
+				<securityName>api_key</securityName>
+				<headerName>api_key</headerName>
+				<type>apiKey</type>
+				<in>header</in>
+			
+			</securityDefinition>
+			
+			<securityDefinition>
+				<securityName>petstore_auth</securityName>
+				<type>oauth2</type>
+				<authorizationUrl>https://petstore.swagger.io/oauth/authorize</authorizationUrl>
+				<flow>implicit</flow>
+				<scopes>
+					<scope>
+						<name>read:pets</name>
+						<description>read your pets</description>
+					</scope>
+					<scope>
+						<name>write:pets</name>
+						<description>modify pets in your account</description>
+					</scope>
+				
+				</scopes>
+			
+			</securityDefinition>
+		
+		</securityDefinitions>
+		
 
 	</rest>
 
