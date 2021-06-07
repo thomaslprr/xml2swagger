@@ -33,10 +33,6 @@
 					<name>name</name>
 					<type>string</type>
 				</property>
-				<property>
-					<name>message</name>
-					<type>string</type>
-				</property>
 			
 			</properties>
 		
@@ -245,11 +241,15 @@
 					<type>post</type>
 					<tags><tag>pet</tag></tags>
 					<summary>Add a new pet to the store</summary>
-					<operation-id>addPet</operation-id>
+					<operationId>addPet</operationId>
 					<consumes>
 						<consume>application/json</consume>
 						<consume>application/xml</consume>
 					</consumes>
+					<produces>
+						<produce>application/json</produce>
+						<produce>application/xml</produce>
+					</produces>
 					<parameters>
 						<parameter>
 						<in>body</in>
@@ -276,6 +276,7 @@
 						<tag>pet</tag>
 					</tags>
 					<summary>Update an existing pet</summary>
+					<operationId>updatePet</operationId>
 					<consumes>
 						<consume>application/json</consume>
 						<consume>application/xml</consume>
@@ -426,8 +427,13 @@
 								</schema>
 							
 							</response>
-						
-						
+							
+							<response>
+								<name>400</name>
+								<description>Invalid status value</description>
+							</response>
+
+												
 						</responses>
 
 
@@ -442,9 +448,10 @@
 					<method>
 						<type>get</type>
 						<tags><tag>pet</tag></tags>
-						<summary>Finds Pets by tag</summary>
+						<summary>Finds Pets by tags</summary>
 						<description>Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.</description>
 						<operationId>findPetsByTags</operationId>
+						<deprecated>true</deprecated>
 						<produces>
 							<produce>application/json</produce>
 							<produce>application/xml</produce>
@@ -494,7 +501,726 @@
 				</methods>
 			
 			</path>
+			
+			<path>
+				<name>/pet/{petId}</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>pet</tag></tags>
+						<summary>Find pet by ID</summary>
+						<description>Returns a single pet</description>
+						<operationId>getPetById</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+							<parameter>
+								<name>petId</name>
+								<in>path</in>
+								<description>ID of pet to return</description>
+								<required>true</required>
+								<type>long</type>
+							</parameter>
+						</parameters>
+						
+						<responses>
 
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<ref>Pet</ref>
+								</schema>
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid ID supplied</description>
+							
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>Pet not found</description>
+							
+							</response>
+						
+						
+						</responses>
+
+
+					</method>
+					
+					<method>
+						<type>post</type>
+						<tags><tag>pet</tag></tags>
+						<summary>Updates a pet in the store with form data</summary>
+						<operationId>updatePetWithForm</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/x-www-form-urlencoded</consume>
+						</consumes>
+						<parameters>
+							<parameter>
+								<name>petId</name>
+								<in>path</in>
+								<description>ID of pet that needs to be updated</description>
+								<required>true</required>
+								<type>long</type>
+							</parameter>
+							
+							<parameter>
+								<name>name</name>
+								<in>formData</in>
+								<description>Updated name of the pet</description>
+								<required>false</required>
+								<type>String</type>
+							</parameter>
+							
+							<parameter>
+								<name>status</name>
+								<in>formData</in>
+								<description>Updated status of the pet</description>
+								<required>false</required>
+								<type>String</type>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>405</name>
+								<description>Invalid input</description>
+
+							</response>
+												
+						</responses>
+
+
+					</method>
+				
+				<method>
+						<type>delete</type>
+						<tags><tag>pet</tag></tags>
+						<summary>Deletes a pet</summary>
+						<operationId>deletePet</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+
+							<parameter>
+								<name>api_key</name>
+								<in>header</in>
+								<required>false</required>
+								<type>String</type>
+							</parameter>
+							
+							<parameter>
+								<name>petId</name>
+								<in>path</in>
+								<description>Pet id to delete</description>
+								<required>true</required>
+								<type>long</type>
+							</parameter>
+							
+							
+						</parameters>
+						
+						<responses>
+						
+							<response>
+								<name>400</name>
+								<description>Invalid ID supplied</description>
+							</response>
+
+							<response>
+								<name>404</name>
+								<description>Pet not found</description>
+
+							</response>
+												
+						</responses>
+
+
+					</method>
+
+				</methods>
+			
+			</path>
+
+			<path>
+				<name>/store/inventory</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>store</tag></tags>
+						<summary>Returns pet inventories by status</summary>
+						<description>Returns a map of status codes to quantities</description>
+						<operationId>getInventory</operationId>
+						<produces>
+							<produce>application/json</produce>
+						</produces>
+						<parameters>
+
+							
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<type>object</type>
+								<schema>
+									<type>object</type>
+									<additionalProperties>
+										<type>integer</type>
+									</additionalProperties>
+								
+								</schema>
+							
+							</response>
+							
+							
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>
+
+			<path>
+				<name>/store/order</name>
+				<methods>
+					<method>
+						<type>post</type>
+						<tags><tag>store</tag></tags>
+						<summary>Place an order for a pet</summary>
+						<operationId>placeOrder</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/json</consume>
+						</consumes>
+						<parameters>
+							<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>order placed for purchasing the pet</description>
+							<required>true</required>
+							<schema>
+								<ref>Order</ref>
+							</schema>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<ref>Order</ref>
+								
+								</schema>
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid Order</description>
+							
+							</response>
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>		
+
+			<path>
+				<name>/store/order/{orderId}</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>store</tag></tags>
+						<summary>Find purchase order by ID</summary>
+						<description>For valid response try integer IDs with value >= 1 and &lt;= 10. Other values will generated exceptions</description>
+						<operationId>getOrderById</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+							<parameter>
+								<in>path</in>
+								<name>orderId</name>
+								<description>ID of pet that needs to be fetched</description>
+								<required>true</required>
+								<type>long</type>
+								<maximum>10</maximum>
+								<minimum>1</minimum>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<ref>Order</ref>
+								
+								</schema>
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid ID supplied</description>
+							
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>Order not found</description>
+							
+							</response>
+						
+						
+						</responses>
+
+
+					</method>
+					
+					<method>
+						<type>delete</type>
+						<tags><tag>store</tag></tags>
+						<summary>Delete purchase order by ID</summary>
+						<description>For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors</description>
+						<operationId>deleteOrder</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+
+							<parameter>
+								<in>path</in>
+								<name>orderId</name>
+								<description>ID of the order that needs to be deleted</description>
+								<required>true</required>
+								<type>long</type>
+								<minimum>1</minimum>
+							</parameter>
+						</parameters>
+						
+						<responses>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid ID supplied</description>
+							
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>Order not found</description>
+							
+							</response>
+							
+							
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>				
+		
+			<path>
+				<name>/user/createWithList</name>
+				<methods>
+					<method>
+						<type>post</type>
+						<tags><tag>user</tag></tags>
+						<summary>Creates list of users with given input array</summary>
+						<operationId>createUsersWithListInput</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/json</consume>
+						</consumes>
+						<parameters>
+							<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>List of user object</description>
+							<required>true</required>
+							<schema>
+								<type>array</type>
+								<items>
+									<ref>User</ref>
+								</items>
+							</schema>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>default</name>
+								<description>successful operation</description>
+
+							
+							</response>
+
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>	
+			
+			<path>
+				<name>/user/{username}</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>user</tag></tags>
+						<summary>Get user by user name</summary>
+						<operationId>getUserByName</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+							<parameter>
+							<in>path</in>
+							<name>username</name>
+							<description>The name that needs to be fetched. Use user1 for testing.</description>
+							<required>true</required>
+							<type>String</type>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<ref>User</ref>
+								</schema>
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid username supplied</description>
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>User not found</description>
+							</response>
+
+						</responses>
+
+
+					</method>
+					
+					<method>
+						<type>put</type>
+						<tags><tag>user</tag></tags>
+						<summary>Updated user</summary>
+						<description>This can only be done by the logged in user.</description>
+						<operationId>updateUser</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/json</consume>
+						</consumes>
+						<parameters>
+
+							<parameter>
+							<in>path</in>
+							<name>username</name>
+							<description>The name that need to be updated</description>
+							<required>true</required>
+							<type>String</type>
+							</parameter>
+							
+							<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>Updated user object</description>
+							<required>true</required>
+							<schema>
+								<ref>User</ref>
+							</schema>
+							</parameter>
+						</parameters>
+						
+						<responses>							
+							<response>
+								<name>400</name>
+								<description>Invalid user supplied</description>
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>User not found</description>
+							</response>
+
+						</responses>
+
+
+					</method>
+					
+					<method>
+						<type>delete</type>
+						<tags><tag>user</tag></tags>
+						<summary>Delete user</summary>
+						<description>This can only be done by the logged in user.</description>
+						<operationId>deleteUser</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+
+							<parameter>
+							<in>path</in>
+							<name>username</name>
+							<description>The name that needs to be deleted</description>
+							<required>true</required>
+							<type>String</type>
+							</parameter>
+
+						</parameters>
+						
+						<responses>							
+							<response>
+								<name>400</name>
+								<description>Invalid username supplied</description>
+							</response>
+							
+							<response>
+								<name>404</name>
+								<description>User not found</description>
+							</response>
+
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>			
+		
+			<path>
+				<name>/user/login</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>user</tag></tags>
+						<summary>Logs user into the system</summary>
+						<operationId>loginUser</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+
+							<parameter>
+							<in>query</in>
+							<name>username</name>
+							<description>The user name for login</description>
+							<required>true</required>
+							<type>String</type>
+							</parameter>
+							
+							<parameter>
+							<in>query</in>
+							<name>password</name>
+							<description>The password for login in clear text</description>
+							<required>true</required>
+							<type>String</type>
+							</parameter>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>200</name>
+								<description>successful operation</description>
+								<schema>
+									<type>String</type>
+								</schema>
+
+							
+							</response>
+							
+							<response>
+								<name>400</name>
+								<description>Invalid username/password supplied</description>
+							</response>
+
+						
+						
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>	
+			
+			<path>
+				<name>/user/logout</name>
+				<methods>
+					<method>
+						<type>get</type>
+						<tags><tag>user</tag></tags>
+						<summary>Logs out current logged in user session</summary>
+						<operationId>logoutUser</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<parameters>
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>default</name>
+								<description>successful operation</description>
+							
+							</response>
+
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>	
+			
+			<path>
+				<name>/user/createWithArray</name>
+				<methods>
+					<method>
+						<type>post</type>
+						<tags><tag>user</tag></tags>
+						<summary>Creates list of users with given input array</summary>
+						<operationId>createUsersWithArrayInput</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/json</consume>
+						</consumes>
+						<parameters>
+						<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>List of user object</description>
+							<required>true</required>
+							<schema>
+								<type>array</type>
+								<items><ref>User</ref></items>
+							</schema>
+							</parameter>
+
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>default</name>
+								<description>successful operation</description>
+							
+							</response>
+
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>	
+			
+			<path>
+				<name>/user</name>
+				<methods>
+					<method>
+						<type>post</type>
+						<tags><tag>user</tag></tags>
+						<summary>Create user</summary>
+						<description>This can only be done by the logged in user.</description>
+						<operationId>createUser</operationId>
+						<produces>
+							<produce>application/json</produce>
+							<produce>application/xml</produce>
+						</produces>
+						<consumes>
+							<consume>application/json</consume>
+						</consumes>
+						<parameters>
+						<parameter>
+							<in>body</in>
+							<name>body</name>
+							<description>Created user object</description>
+							<required>true</required>
+							<schema>
+								<ref>User</ref>
+							</schema>
+							</parameter>
+
+						</parameters>
+						
+						<responses>
+
+							<response>
+								<name>default</name>
+								<description>successful operation</description>
+							
+							</response>
+
+						</responses>
+
+
+					</method>
+				</methods>
+			
+			</path>	
 		
 		</paths>
 		
