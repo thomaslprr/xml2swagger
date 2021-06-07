@@ -7,6 +7,8 @@ public class Schema {
 	private String type;
 	
 	private Items items;
+	
+	private AdditionalProperties additionalProperties;
 
 	public String getRef() {
 		return ref;
@@ -31,6 +33,15 @@ public class Schema {
 	public void setItems(Items items) {
 		this.items = items;
 	}
+
+	public AdditionalProperties getAdditionalProperties() {
+		return additionalProperties;
+	}
+
+	public void setAdditionalProperties(AdditionalProperties additionalProperties) {
+		this.additionalProperties = additionalProperties;
+	}
+	
 	
 	
 
