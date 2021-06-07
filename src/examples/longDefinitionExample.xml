@@ -8712,8 +8712,8 @@
 	</schemes>
 	<tags>
 		<tag>
-			<tag-name>color v2</tag-name>
-			<tag-description>Everything about color</tag-description>
+			<name>color v2</name>
+			<description>Everything about color</description>
 			<external-docs>
 				<description>Find out more</description>
 				<url>https://en.wikipedia.org/wiki/Color</url>
@@ -8731,7 +8731,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>search</operation-id>
+					<operationId>search</operationId>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
@@ -8752,7 +8752,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>add-color</operation-id>
+					<operationId>add-color</operationId>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
@@ -8793,7 +8793,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>search-detailled</operation-id>
+					<operationId>search-detailled</operationId>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
@@ -8821,7 +8821,7 @@
 					<tags>
 						<tag>color v2</tag>
 					</tags>
-					<operation-id>update</operation-id>
+					<operationId>update</operationId>
 					<produces>
 						<produce>application/json</produce>
 					</produces>
