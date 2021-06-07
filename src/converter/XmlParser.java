@@ -437,22 +437,81 @@ public class XmlParser {
 						}
 							
 						paramJson.put("type", type);
-						paramJson.put("format", format);
+						if(!format.equals(""))
+							paramJson.put("format", format);
 									
 					}
 					//schema parameter gestion
 					if(param.getSchema()!=null) {
 						JSONObject schemaJson= new JSONObject();
-						if(param.getSchema().getRef()==null) {
-							throw new Exception("You must have a <ref> tag in Schema object");
+						if(param.getSchema().getRef()!=null) {
+							schemaJson.put("$ref","#/definitions/"+param.getSchema().getRef() );
 						}
-						schemaJson.put("$ref","#/definitions/"+param.getSchema().getRef() );
+						
+						if(param.getSchema().getType()!=null && param.getSchema().getType().equals("array")) {
+							schemaJson.put("type", param.getSchema().getType());
+							JSONObject itemsObject = new JSONObject();
+							if(param.getSchema().getItems().getRef()!=null) {
+								itemsObject.put("$ref", "#/definitions/"+param.getSchema().getItems().getRef());
+							}
+							
+							if(param.getSchema().getItems().getDefault()!=null) {
+								itemsObject.put("default", param.getSchema().getItems().getDefault());
+							}
+							
+							if(param.getSchema().getItems().getType()!=null) {
+								itemsObject.put("type",param.getSchema().getItems().getType());
+							}
+							
+							if(param.getSchema().getItems().getEnums()!=null && param.getSchema().getItems().getEnums().getEnum()!=null) {
+								JSONArray enumArray = new JSONArray();
+								for(String s : param.getSchema().getItems().getEnums().getEnum()) {
+									enumArray.put(s);
+								}
+								itemsObject.put("enum", enumArray);
+							}
+							schemaJson.put("items", itemsObject);							
+						}
 						paramJson.put("schema", schemaJson);
+
 					}
 					
 					if(param.getCollectionFormat()!=null) {
 						paramJson.put("collectionFormat", param.getCollectionFormat());
 					}
+					
+					if(param.getMinimum()!=0) {
+						paramJson.put("minimum", param.getMinimum());
+					}
+					
+					if(param.getMaximum()!=0) {
+						paramJson.put("maximum", param.getMaximum());
+					}
+					
+					if(param.isExclusiveMaximum()) {
+						paramJson.put("exclusiveMaximum", true);
+					}
+					
+					if(param.isExclusiveMinimum()) {
+						paramJson.put("exclusiveMinimum", true);
+					}
+					
+					if(param.isUniqueItems()) {
+						paramJson.put("uniqueItems", true);
+					}
+					
+					if(param.getMaxLength()!=0) {
+						paramJson.put("maxLength", param.getMaxLength());
+					}
+					
+					if(param.getMinLength()!=0) {
+						paramJson.put("minLength", param.getMinLength());
+					}
+					
+					if(param.getMaxItems()!=0) {
+						paramJson.put("maxItems", param.getMaxItems());
+					}
+
 					/**
 					 * Todo: securise input and null value (required or not)
 					 */
@@ -500,8 +559,9 @@ public class XmlParser {
 				//method description management
 				if(m.getDescription()!=null) {
 					method.put("description", m.getDescription());
+				}else {
+					method.put("description", "");
 				}
-				
 				
 				/**
 				 * Response management
@@ -527,28 +587,78 @@ public class XmlParser {
 					
 					JSONObject description = new JSONObject() ;
 					description.put("description", r.getDescription());
+					
 					//schema response management
-					if(r.getSchema()!=null && r.getSchema().getType()!=null && r.getSchema().getType().equals("array")){
+					if(r.getSchema()!=null) {
 						JSONObject schemaJson = new JSONObject();
-						if(r.getSchema().getItems().getRef()==null) {
-							throw new Exception("You must have a <ref> tag in Items object");
-						}
-						schemaJson.put("type", "array");
-						JSONObject refObject = new JSONObject();
-						refObject.put("$ref", "#/definitions/"+r.getSchema().getItems().getRef());
-						schemaJson.put("items", refObject);
-						description.put("schema", schemaJson);
-						
-						
+
+						if(r.getSchema().getType()!=null && r.getSchema().getType().equals("array")){
+							if(r.getSchema().getItems().getRef()==null) {
+								throw new Exception("You must have a <ref> tag in Items object");
+							}
+							schemaJson.put("type", "array");
+							JSONObject refObject = new JSONObject();
+							refObject.put("$ref", "#/definitions/"+r.getSchema().getItems().getRef());
+							schemaJson.put("items", refObject);
+							description.put("schema", schemaJson);
+							
+							
+						}else if(r.getSchema().getType()==null) {
+							if(r.getSchema().getRef()==null) {
+								throw new Exception("You must have a <ref> tag in Schema object");
+							}
+							schemaJson.put("$ref","#/definitions/"+r.getSchema().getRef() );
+							description.put("schema", schemaJson);
+						}else if(r.getSchema().getType()!=null) {
+							
+							String typeSchema="";
+							String formatSchema="";
+							
+							if(r.getSchema().getType().equals("object")) {
+								typeSchema="object";
+							}else {
+								String dataTypeSchema = dataTypeToTypeAndFormat(r.getSchema().getType());
+								typeSchema = dataTypeSchema.split("/")[0];
+								try {
+									formatSchema = dataTypeSchema.split("/")[1];
+								}catch(ArrayIndexOutOfBoundsException e) {
+									formatSchema = "";
+								}
+							}	
+							
+							schemaJson.put("type", typeSchema);
+							if(!formatSchema.equals("")) {
+								schemaJson.put("format", formatSchema);
+							}
+							
+							if(r.getSchema().getType().equals("object")) {
+								
+								if(r.getSchema().getAdditionalProperties()!=null && r.getSchema().getAdditionalProperties().getType()!=null) {
+									JSONObject additionalProperties = new JSONObject();
+									String type="";
+									String format="";
+
+									String dataType = dataTypeToTypeAndFormat(r.getSchema().getAdditionalProperties().getType());
+									type = dataType.split("/")[0];
+									try {
+										format = dataType.split("/")[1];
+									}catch(ArrayIndexOutOfBoundsException e) {
+										format = "";
+									}
+													
+									additionalProperties.put("type", type);
+									additionalProperties.put("format", format);
+									schemaJson.put("additionalProperties",additionalProperties);
+									
+								}
+								
+								
+							}
+							
+							description.put("schema", schemaJson);
+						}					
 					}
-					else if(r.getSchema()!=null ){
-						JSONObject schemaJson= new JSONObject();
-						if(r.getSchema().getRef()==null) {
-							throw new Exception("You must have a <ref> tag in Schema object");
-						}
-						schemaJson.put("$ref","#/definitions/"+r.getSchema().getRef() );
-						description.put("schema", schemaJson);
-					}
+					
 					response.put(r.getName(), description);
 				}
 
