@@ -23,8 +23,6 @@ public class Response {
 	}
 	public void setSchema(Schema schema) {
 		this.schema = schema;
-	}
-	
-	
+	}	
 
 }
