@@ -32,7 +32,7 @@ public class Method {
 		this.tags = tags;
 	}
 	
-	@XmlElement(name="operation-id")
+	@XmlElement(name="operationId")
 	public String getOperationId() {
 		return operationId;
 	}
