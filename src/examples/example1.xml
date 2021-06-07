@@ -68,12 +68,12 @@
 			<description>The Application</description>
 			<version>1.0.0</version>
 			<title>Sample REST Application</title>
-			<contact-name>Selic</contact-name>
-			<contact-email>selic@contact.fr</contact-email>
-			<contact-url>http://selic.fr/</contact-url>
-			<licence-name>Apache 2.0 License</licence-name>
-			<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
-			<terms-of-service>Test</terms-of-service>
+			<contactName>Selic</contactName>
+			<contactEmail>selic@contact.fr</contactEmail>
+			<contactUrl>http://selic.fr/</contactUrl>
+			<licenceName>Apache 2.0 License</licenceName>
+			<licenceUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenceUrl>
+			<termsOfService>Test</termsOfService>
 		</info>
 		<basePath>/slc_web_balder/ws/1.0</basePath>
 		<host>api.example.com</host>
@@ -87,10 +87,10 @@
 			<tag>
 				<name>color v2</name>
 				<description>Everything about color</description>
-				<external-docs>
+				<externalDocs>
 					<description>Find out more</description>
 					<url>https://en.wikipedia.org/wiki/Color</url>
-				</external-docs>
+				</externalDocs>
 			</tag>
 			
 		</tags>

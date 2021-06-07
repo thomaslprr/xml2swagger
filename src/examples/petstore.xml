@@ -192,10 +192,10 @@
 			<description>This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.</description>
 			<version>1.0.5</version>
 			<title>Swagger Petstore</title>
-			<terms-of-service>http://swagger.io/terms/</terms-of-service>
-			<contact-email>apiteam@swagger.io</contact-email>
-			<licence-name>Apache 2.0</licence-name>
-			<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
+			<termsOfService>http://swagger.io/terms/</termsOfService>
+			<contactEmail>apiteam@swagger.io</contactEmail>
+			<licenceName>Apache 2.0</licenceName>
+			<licenceUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenceUrl>
 		</info>
 		
 		<host>petstore.swagger.io</host>
@@ -205,10 +205,10 @@
 			<tag>
 				<name>pet</name>
 				<description>Everything about your Pets</description>
-				<external-docs>
+				<externalDocs>
 					<description>Find out more</description>
 					<url>http://swagger.io</url>
-				</external-docs>
+				</externalDocs>
 			</tag>
 			
 			<tag>
@@ -219,10 +219,10 @@
 			<tag>
 				<name>user</name>
 				<description>Operations about user</description>
-				<external-docs>
+				<externalDocs>
 					<description>Find out more about our store</description>
 					<url>http://swagger.io</url>
-				</external-docs>
+				</externalDocs>
 			</tag>
 		
 		</tags>

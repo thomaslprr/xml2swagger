@@ -1,6 +1,5 @@
 package header;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="info")
@@ -18,7 +17,6 @@ public class Info {
 	private String termsOfService;
 
 	
-	@XmlElement(name="contact-email")	
 	public String getContactEmail() {
 		return contactEmail;
 	}
@@ -27,7 +25,6 @@ public class Info {
 		this.contactEmail = contactEmail;
 	}
 	
-	@XmlElement(name="terms-of-service")
 	public String getTermsOfService() {
 		return termsOfService;
 	}
@@ -36,38 +33,30 @@ public class Info {
 		this.termsOfService = termsOfSerivce;
 	}
 
-	@XmlElement(name="description")	
 	public String getDescription() {
 		return description;
 	}
 	
-	@XmlElement(name="version")	
 	public String getVersion() {
 		return version;
 	}
 	
-	@XmlElement(name="title")	
 	public String getTitle() {
 		return title;
 	}
 	
-	@XmlElement(name="contact-name")	
 	public String getContactName() {
 		return contactName;
 	}
 	
-	@XmlElement(name="licence-name")	
 	public String getLicenceName() {
 		return licenceName;
 	}
 	
-	@XmlElement(name="licence-url")	
 	public String getLicenceUrl() {
 		return licenceUrl;
 	}
 	
-	
-	@XmlElement(name="contact-url")
 	public String getContactUrl() {
 		return contactUrl;
 	}
