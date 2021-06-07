@@ -1,5 +1,4 @@
-# xml2swagger
-
+#  <img src="https://github.com/thomaslprr/xml2swagger/blob/master/xml2swagger_logo.png" width="400" height="400">
 [![Github All Releases](https://img.shields.io/github/downloads/thomaslprr/xml2swagger/total.svg)]()
 
 
