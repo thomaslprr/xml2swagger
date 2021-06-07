@@ -28,6 +28,7 @@ import paths.Parameter;
 import paths.Path;
 import paths.Response;
 import security.Scope;
+import security.Security;
 import security.SecurityDefinition;
 import validator.Validator;
 
@@ -666,6 +667,32 @@ public class XmlParser {
 
 				method.put("responses", response);
 				}
+				
+				
+				//security management
+				if(m.getSecurities()!=null&&m.getSecurities().getSecurity()!=null) {
+					JSONArray securities = new JSONArray();
+					for(Security security : m.getSecurities().getSecurity()) {
+						JSONObject securityJson = new JSONObject();
+						if(security.getName()==null) {
+							throw new Exception();
+						}
+						
+						
+						JSONArray valuesArray = new JSONArray();
+						if(security.getValues()!=null && security.getValues().getValue()!=null) {
+							for(String s : security.getValues().getValue()) {
+								valuesArray.put(s);
+							}
+						}
+						securityJson.put(security.getName(), valuesArray);
+						
+						securities.put(securityJson);
+					}
+					method.put("security", securities);
+					
+				}
+				
 				
 				pathJson.put(m.getType(), method);
 			}

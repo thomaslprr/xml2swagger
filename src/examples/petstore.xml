@@ -265,7 +265,16 @@
 							<description>Invalid input</description>
 						</response>
 					</responses>
-				
+					<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 				
 				</method>
 				
@@ -312,6 +321,16 @@
 						</response>
 					
 					</responses>
+					<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 				</method>
 				</methods>
 			</path>
@@ -369,6 +388,17 @@
 							<schema><ref>ApiResponse</ref></schema>
 						</response>
 					</responses>
+					
+					<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 					
 					</method>
 				
@@ -435,6 +465,17 @@
 
 												
 						</responses>
+						
+						<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 
 
 					</method>
@@ -495,6 +536,17 @@
 						
 						
 						</responses>
+						
+						<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 
 
 					</method>
@@ -550,6 +602,13 @@
 						
 						
 						</responses>
+						<securities>
+						<security>
+							<name>api_key</name>
+							
+						
+						</security>
+					</securities>
 
 
 					</method>
@@ -601,6 +660,17 @@
 							</response>
 												
 						</responses>
+						
+						<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 
 
 					</method>
@@ -648,6 +718,17 @@
 							</response>
 												
 						</responses>
+						
+						<securities>
+						<security>
+							<name>petstore_auth</name>
+							<values>
+								<value>write:pets</value>
+								<value>read:pets</value>
+							</values>
+						
+						</security>
+					</securities>
 
 
 					</method>
@@ -692,6 +773,12 @@
 							
 						
 						</responses>
+						
+						<securities>
+						<security>
+							<name>api_key</name>
+						</security>
+					</securities>
 
 
 					</method>
@@ -920,7 +1007,7 @@
 							<parameter>
 							<in>path</in>
 							<name>username</name>
-							<description>The name that needs to be fetched. Use user1 for testing.</description>
+							<description>The name that needs to be fetched. Use user1 for testing. </description>
 							<required>true</required>
 							<type>String</type>
 							</parameter>
@@ -970,7 +1057,7 @@
 							<parameter>
 							<in>path</in>
 							<name>username</name>
-							<description>The name that need to be updated</description>
+							<description>name that need to be updated</description>
 							<required>true</required>
 							<type>String</type>
 							</parameter>

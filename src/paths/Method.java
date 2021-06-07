@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 import exceptions.SummaryException;
 import global.Tags;
+import security.Securities;
 
 public class Method {
 	
@@ -17,6 +18,7 @@ public class Method {
 	private String summary;
 	private boolean deprecated;
 	private String description;
+	private Securities securities;
 	
 	
 	public String getType() {
@@ -80,6 +82,12 @@ public class Method {
 	}
 	public void setConsumes(Consumes consumes) {
 		this.consumes = consumes;
+	}
+	public Securities getSecurities() {
+		return securities;
+	}
+	public void setSecurities(Securities securities) {
+		this.securities = securities;
 	}
 	
 	
