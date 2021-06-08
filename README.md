@@ -1,4 +1,4 @@
-#  <img src="https://github.com/thomaslprr/xml2swagger/blob/master/xml2swagger_logo.png" width="300" height="300">    
+#  <img src="https://github.com/thomaslprr/xml2swagger/blob/master/xml2swagger_logo.png" width="600" height="225">    
 
 [![Github All Releases](https://img.shields.io/github/downloads/thomaslprr/xml2swagger/total.svg)]()
 
