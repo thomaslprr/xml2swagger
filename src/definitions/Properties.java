@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class Properties {
 	
-	private List<Property> properties;
+	private List<Property> property;
 
 	@XmlElement(name = "property")
 	public List<Property> getProperties() {
-		return properties;
+		return this.property;
 	}
 
-	public void setProperties(List<Property> properties) {
-		this.properties = properties;
+	public void setProperties(List<Property> property) {
+		this.property = property;
 	}
 	
 	
