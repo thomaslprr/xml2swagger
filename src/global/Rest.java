@@ -20,6 +20,17 @@ public class Rest {
 	
 	private SecurityDefinitions securityDefinitions;
 	
+	public Rest(Info info, String basePath, String host, TagsDetailled tags, Paths paths, Schemes schemes,
+			SecurityDefinitions securityDefinitions) {
+		super();
+		this.info = info;
+		this.basePath = basePath;
+		this.host = host;
+		this.tags = tags;
+		this.paths = paths;
+		this.schemes = schemes;
+		this.securityDefinitions = securityDefinitions;
+	}
 
 	public Schemes getSchemes() {
 		return schemes;

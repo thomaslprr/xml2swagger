@@ -7,6 +7,11 @@ public class Responses {
 	
 	private List<Response> response;
 
+	public Responses(List<Response> response) {
+		super();
+		this.response = response;
+	}
+
 	public List<Response> getResponse() {
 		return response;
 	}

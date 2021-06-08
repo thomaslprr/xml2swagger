@@ -8,6 +8,11 @@ public class SecurityDefinitions {
 	
 	private List<SecurityDefinition> securityDefinition;
 
+	public SecurityDefinitions(List<SecurityDefinition> securityDefinition) {
+		super();
+		this.securityDefinition = securityDefinition;
+	}
+
 	public List<SecurityDefinition> getSecurityDefinition() {
 		return securityDefinition;
 	}

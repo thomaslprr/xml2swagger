@@ -8,6 +8,11 @@ public class Item {
 	
 	private String ref;
 	
+	public Item(String type, String ref) {
+		super();
+		this.type = type;
+		this.ref = ref;
+	}
 	@XmlElement(name = "type")
 	public String getType() {
 		return type;

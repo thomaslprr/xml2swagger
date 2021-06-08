@@ -19,7 +19,27 @@ public class Parameter {
 	private int maxItems;	
 	private boolean	uniqueItems;
 	
-	
+	public Parameter(String in, String name, boolean required, Schema schema, String type, String description,
+			Items items, String collectionFormat, int minimum, int maximum, boolean exclusiveMaximum,
+			boolean exclusiveMinimum, int maxLength, int minLength, int maxItems, boolean uniqueItems) {
+		super();
+		this.in = in;
+		this.name = name;
+		this.required = required;
+		this.schema = schema;
+		this.type = type;
+		this.description = description;
+		this.items = items;
+		this.collectionFormat = collectionFormat;
+		this.minimum = minimum;
+		this.maximum = maximum;
+		this.exclusiveMaximum = exclusiveMaximum;
+		this.exclusiveMinimum = exclusiveMinimum;
+		this.maxLength = maxLength;
+		this.minLength = minLength;
+		this.maxItems = maxItems;
+		this.uniqueItems = uniqueItems;
+	}
 	public String getIn() {
 		return in;
 	}

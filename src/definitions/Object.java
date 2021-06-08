@@ -9,6 +9,12 @@ public class Object {
 	
 	private Properties properties;
 	
+	public Object(String name, Properties properties) {
+		super();
+		this.name = name;
+		this.properties = properties;
+	}
+
 	public String getName() {
 		return name;
 	}

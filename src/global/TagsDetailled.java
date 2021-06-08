@@ -6,6 +6,11 @@ public class TagsDetailled {
 	
 	List<Tag> tag;
 
+	public TagsDetailled(List<Tag> tag) {
+		super();
+		this.tag = tag;
+	}
+
 	public List<Tag> getTag() {
 		return tag;
 	}

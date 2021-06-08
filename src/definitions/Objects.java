@@ -7,8 +7,12 @@ import javax.xml.bind.annotation.XmlElement;
 public class Objects {
 	
 	private List<Object> object;
-
 	
+	public Objects(List<Object> object) {
+		super();
+		this.object = object;
+	}
+
 	@XmlElement(name = "object")
 	public List<Object> getObject() {
 		return object;

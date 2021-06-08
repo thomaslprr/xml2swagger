@@ -8,6 +8,11 @@ public class Properties {
 	
 	private List<Property> property;
 
+	public Properties(List<Property> property) {
+		super();
+		this.property = property;
+	}
+
 	@XmlElement(name = "property")
 	public List<Property> getProperties() {
 		return this.property;

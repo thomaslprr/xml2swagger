@@ -27,7 +27,28 @@ public class Property {
 	private int minLength;
 	private int maxItems;	
 	private boolean	uniqueItems;
-
+	
+	public Property(String name, String type, String ref, Item items, Enums enums, String example, String description,
+			boolean required, int minimum, int maximum, boolean exclusiveMaximum, boolean exclusiveMinimum,
+			int maxLength, int minLength, int maxItems, boolean uniqueItems) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.ref = ref;
+		this.items = items;
+		this.enums = enums;
+		this.example = example;
+		this.description = description;
+		this.required = required;
+		this.minimum = minimum;
+		this.maximum = maximum;
+		this.exclusiveMaximum = exclusiveMaximum;
+		this.exclusiveMinimum = exclusiveMinimum;
+		this.maxLength = maxLength;
+		this.minLength = minLength;
+		this.maxItems = maxItems;
+		this.uniqueItems = uniqueItems;
+	}
 
 	@XmlElement(name = "name")
 	public String getName() {

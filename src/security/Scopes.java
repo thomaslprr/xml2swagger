@@ -6,6 +6,11 @@ public class Scopes {
 	
 	private List<Scope> scope;
 
+	public Scopes(List<Scope> scope) {
+		super();
+		this.scope = scope;
+	}
+
 	public List<Scope> getScope() {
 		return scope;
 	}

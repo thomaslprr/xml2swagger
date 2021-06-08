@@ -14,7 +14,14 @@ public class Items {
 	private Enums enums;
 	
 	private String type;
-	
+
+	public Items(String ref, String defaulte, Enums enums, String type) {
+		super();
+		this.ref = ref;
+		this.defaulte = defaulte;
+		this.enums = enums;
+		this.type = type;
+	}
 
 	public String getRef() {
 		return ref;

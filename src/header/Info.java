@@ -3,8 +3,7 @@ package header;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="info")
-public class Info {
-	
+public class Info {	
 	
 	private String description;
 	private String version;
@@ -15,8 +14,21 @@ public class Info {
 	private String licenceName;
 	private String licenceUrl;
 	private String termsOfService;
-
 	
+	public Info(String description, String version, String title, String contactName, String contactEmail,
+			String contactUrl, String licenceName, String licenceUrl, String termsOfService) {
+		super();
+		this.description = description;
+		this.version = version;
+		this.title = title;
+		this.contactName = contactName;
+		this.contactEmail = contactEmail;
+		this.contactUrl = contactUrl;
+		this.licenceName = licenceName;
+		this.licenceUrl = licenceUrl;
+		this.termsOfService = termsOfService;
+	}
+
 	public String getContactEmail() {
 		return contactEmail;
 	}

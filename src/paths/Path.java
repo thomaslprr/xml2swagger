@@ -9,6 +9,12 @@ public class Path {
 	private String name;
 	
 	private Methods methods;
+	
+	public Path(String name, Methods methods) {
+		super();
+		this.name = name;
+		this.methods = methods;
+	}
 
 	@XmlElement(name="name")
 	public String getName() {

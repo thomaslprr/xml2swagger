@@ -8,6 +8,11 @@ public class Produces {
 	
 	private List<String> produceType;
 	
+	public Produces(List<String> produceType) {
+		super();
+		this.produceType = produceType;
+	}
+
 	@XmlElement(name="produce")
 	public List<String> getProduceType() {
 		return produceType;

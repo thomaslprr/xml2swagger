@@ -6,6 +6,12 @@ public class Tag {
 	private String description;
 	private ExternalDocs externalDocs;
 	
+	public Tag(String name, String description, ExternalDocs externalDocs) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.externalDocs = externalDocs;
+	}
 	public String getName() {
 		return name;
 	}

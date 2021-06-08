@@ -12,6 +12,20 @@ public class SecurityDefinition {
 	private String authorizationUrl;
 	private String tokenUrl;
 	private Scopes scopes;
+
+	public SecurityDefinition(String securityName, String type, String description, String headerName, String in,
+			String flow, String authorizationUrl, String tokenUrl, Scopes scopes) {
+		super();
+		this.securityName = securityName;
+		this.type = type;
+		this.description = description;
+		this.headerName = headerName;
+		this.in = in;
+		this.flow = flow;
+		this.authorizationUrl = authorizationUrl;
+		this.tokenUrl = tokenUrl;
+		this.scopes = scopes;
+	}
 	public String getSecurityName() {
 		return securityName;
 	}

@@ -9,6 +9,11 @@ public class Tags {
 	
 	private List<String> tagName;
 
+	public Tags(List<String> tagName) {
+		super();
+		this.tagName = tagName;
+	}
+
 	@XmlElement(name="tag")
 	public List<String> getTag() {
 		return tagName;

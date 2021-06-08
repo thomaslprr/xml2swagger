@@ -10,6 +10,12 @@ public class Global {
 	
 	private Objects objects;
 
+	public Global(Objects objects, Rest rest) {
+		super();
+		this.objects = objects;
+		this.rest = rest;
+	}
+
 	public Objects getObjects() {
 		return objects;
 	}

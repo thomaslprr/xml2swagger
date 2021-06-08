@@ -6,6 +6,11 @@ public class Values {
 
 	private List<String> value;
 
+	public Values(List<String> value) {
+		super();
+		this.value = value;
+	}
+
 	public List<String> getValue() {
 		return value;
 	}

@@ -6,6 +6,12 @@ public class Response {
 	private String description;
 	private Schema schema;
 	
+	public Response(String name, String description, Schema schema) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.schema = schema;
+	}
 	public String getName() {
 		return name;
 	}

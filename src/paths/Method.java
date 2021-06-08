@@ -20,6 +20,22 @@ public class Method {
 	private String description;
 	private Securities securities;
 	
+	public Method(String type, Tags tags, String operationId, Produces produces, Consumes consumes,
+			Parameters parameters, Responses responses, String summary, boolean deprecated, String description,
+			Securities securities) {
+		super();
+		this.type = type;
+		this.tags = tags;
+		this.operationId = operationId;
+		this.produces = produces;
+		this.consumes = consumes;
+		this.parameters = parameters;
+		this.responses = responses;
+		this.summary = summary;
+		this.deprecated = deprecated;
+		this.description = description;
+		this.securities = securities;
+	}
 	
 	public String getType() {
 		return type;
