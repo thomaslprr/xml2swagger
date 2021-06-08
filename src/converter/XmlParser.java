@@ -138,6 +138,40 @@ public class XmlParser {
 					propertyRequired.put(property.getName());
 				}
 				
+				
+				if(property.getMinimum()!=0) {
+					propertyJson.put("minimum", property.getMinimum());
+				}
+				
+				if(property.getMaximum()!=0) {
+					propertyJson.put("maximum", property.getMaximum());
+				}
+				
+				if(property.isExclusiveMaximum()) {
+					propertyJson.put("exclusiveMaximum", true);
+				}
+				
+				if(property.isExclusiveMinimum()) {
+					propertyJson.put("exclusiveMinimum", true);
+				}
+				
+				if(property.isUniqueItems()) {
+					propertyJson.put("uniqueItems", true);
+				}
+				
+				if(property.getMaxLength()!=0) {
+					propertyJson.put("maxLength", property.getMaxLength());
+				}
+				
+				if(property.getMinLength()!=0) {
+					propertyJson.put("minLength", property.getMinLength());
+				}
+				
+				if(property.getMaxItems()!=0) {
+					propertyJson.put("maxItems", property.getMaxItems());
+				}
+				
+				
 				if(property.getType().equals("array")) {
 					JSONObject arrayJson = new JSONObject();
 					if(property.getItems()==null) {
