@@ -11,7 +11,7 @@ This project allows you to convert an XML file into OpenAPI 2.0 (Swagger 2.0) do
 
 There are two ways to use the module depending on your needs.
 
-**In any case, you will need to download the ".jar" file:** [**swagger2xml.jar**](https://github.com/thomaslprr/xml2swagger/releases/download/v1.0-beta/xml2swagger.jar)
+**In any case, you will need to download the ".jar" file:** [**swagger2xml.jar**](https://github.com/thomaslprr/xml2swagger/releases/download/v2.0-beta/xml2swagger.jar)
 
 **Use the module via the command prompt:** 
 
