@@ -960,4 +960,20 @@ public class XmlParser {
 			return null;
 		}
 	}
+	
+	/**
+	 * Convert a Global object into a swagger json documentation
+	 * @param globalObject
+	 * @return Return a swagger json documentation
+	 */
+	public static String javaClassToSwaggerJson(Global globalObject) {
+		try {
+			String result = XmlParser.xmlToSwaggerJson(globalObject).toString(2);
+			System.out.println("result");
+			return result;		
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

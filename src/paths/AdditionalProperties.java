@@ -3,6 +3,11 @@ package paths;
 public class AdditionalProperties {
 	
 	private String type;
+	
+	public AdditionalProperties(String type) {
+		super();
+		this.type = type;
+	}
 
 	public String getType() {
 		return type;
