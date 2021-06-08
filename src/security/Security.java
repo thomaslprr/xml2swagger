@@ -5,6 +5,10 @@ public class Security {
 	private String name;
 	private Values values;
 	
+	public Security() {
+		super();
+	}
+
 	public Security(String name, Values values) {
 		super();
 		this.name = name;

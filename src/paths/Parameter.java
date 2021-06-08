@@ -19,6 +19,9 @@ public class Parameter {
 	private int maxItems;	
 	private boolean	uniqueItems;
 	
+	public Parameter() {
+		super();
+	}
 	public Parameter(String in, String name, boolean required, Schema schema, String type, String description,
 			Items items, String collectionFormat, int minimum, int maximum, boolean exclusiveMaximum,
 			boolean exclusiveMinimum, int maxLength, int minLength, int maxItems, boolean uniqueItems) {

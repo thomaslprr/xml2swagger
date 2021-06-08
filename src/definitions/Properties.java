@@ -13,6 +13,10 @@ public class Properties {
 		this.property = property;
 	}
 
+	public Properties() {
+		super();
+	}
+
 	@XmlElement(name = "property")
 	public List<Property> getProperties() {
 		return this.property;

@@ -6,6 +6,10 @@ public class Securities {
 	
 	private List<Security> security;
 
+	public Securities() {
+		super();
+	}
+
 	public Securities(List<Security> security) {
 		super();
 		this.security = security;

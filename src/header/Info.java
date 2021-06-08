@@ -15,6 +15,10 @@ public class Info {
 	private String licenceUrl;
 	private String termsOfService;
 	
+	public Info() {
+		super();
+	}
+
 	public Info(String description, String version, String title, String contactName, String contactEmail,
 			String contactUrl, String licenceName, String licenceUrl, String termsOfService) {
 		super();

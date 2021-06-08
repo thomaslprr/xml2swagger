@@ -13,6 +13,11 @@ public class Item {
 		this.type = type;
 		this.ref = ref;
 	}
+	
+	public Item() {
+		
+	}
+	
 	@XmlElement(name = "type")
 	public String getType() {
 		return type;

@@ -15,6 +15,10 @@ public class Items {
 	
 	private String type;
 
+	public Items() {
+		super();
+	}
+
 	public Items(String ref, String defaulte, Enums enums, String type) {
 		super();
 		this.ref = ref;

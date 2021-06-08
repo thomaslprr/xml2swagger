@@ -5,6 +5,9 @@ public class ExternalDocs {
 	private String description;
 	private String url ;
 	
+	public ExternalDocs() {
+		super();
+	}
 	public ExternalDocs(String description, String url) {
 		super();
 		this.description = description;

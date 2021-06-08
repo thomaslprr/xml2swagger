@@ -20,6 +20,10 @@ public class Method {
 	private String description;
 	private Securities securities;
 	
+	public Method() {
+		super();
+	}
+
 	public Method(String type, Tags tags, String operationId, Produces produces, Consumes consumes,
 			Parameters parameters, Responses responses, String summary, boolean deprecated, String description,
 			Securities securities) {

@@ -49,6 +49,10 @@ public class Property {
 		this.maxItems = maxItems;
 		this.uniqueItems = uniqueItems;
 	}
+	
+	public Property() {
+		super();
+	}
 
 	@XmlElement(name = "name")
 	public String getName() {

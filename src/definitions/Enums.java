@@ -13,6 +13,10 @@ public class Enums {
 		this.enume = enume;
 	}
 	
+	public Enums() {
+		super();
+	}
+
 	@XmlElement(name="enum")
 	public List<String> getEnum() {
 		return enume;

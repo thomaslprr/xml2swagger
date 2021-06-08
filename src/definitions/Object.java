@@ -14,6 +14,10 @@ public class Object {
 		this.name = name;
 		this.properties = properties;
 	}
+	
+	public Object() {
+		super();
+	}
 
 	public String getName() {
 		return name;

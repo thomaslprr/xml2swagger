@@ -6,6 +6,10 @@ public class Tag {
 	private String description;
 	private ExternalDocs externalDocs;
 	
+	public Tag() {
+		super();
+	}
+	
 	public Tag(String name, String description, ExternalDocs externalDocs) {
 		super();
 		this.name = name;

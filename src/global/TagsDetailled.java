@@ -6,6 +6,10 @@ public class TagsDetailled {
 	
 	List<Tag> tag;
 
+	public TagsDetailled() {
+		super();
+	}
+
 	public TagsDetailled(List<Tag> tag) {
 		super();
 		this.tag = tag;

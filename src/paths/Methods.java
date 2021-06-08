@@ -6,6 +6,10 @@ public class Methods {
 	
 	private List<Method> method;
 
+	public Methods() {
+		super();
+	}
+
 	public Methods(List<Method> method) {
 		super();
 		this.method = method;

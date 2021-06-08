@@ -9,6 +9,10 @@ public class Tags {
 	
 	private List<String> tagName;
 
+	public Tags() {
+		super();
+	}
+
 	public Tags(List<String> tagName) {
 		super();
 		this.tagName = tagName;

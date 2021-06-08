@@ -10,6 +10,10 @@ public class Path {
 	
 	private Methods methods;
 	
+	public Path() {
+		super();
+	}
+
 	public Path(String name, Methods methods) {
 		super();
 		this.name = name;

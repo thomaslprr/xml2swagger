@@ -13,6 +13,10 @@ public class Objects {
 		this.object = object;
 	}
 
+	public Objects() {
+		super();
+	}
+
 	@XmlElement(name = "object")
 	public List<Object> getObject() {
 		return object;

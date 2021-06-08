@@ -5,6 +5,10 @@ public class Scope {
 	private String name;
 	private String description;
 	
+	public Scope() {
+		super();
+	}
+
 	public Scope(String name, String description) {
 		super();
 		this.name = name;

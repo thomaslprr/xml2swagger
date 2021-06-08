@@ -6,6 +6,10 @@ public class Paths {
 	
 	private List<Path> path;
 
+	public Paths() {
+		super();
+	}
+
 	public Paths(List<Path> path) {
 		super();
 		this.path = path;

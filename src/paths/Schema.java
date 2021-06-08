@@ -10,6 +10,10 @@ public class Schema {
 	
 	private AdditionalProperties additionalProperties;
 
+	public Schema() {
+		super();
+	}
+
 	public Schema(String ref, String type, Items items, AdditionalProperties additionalProperties) {
 		super();
 		this.ref = ref;

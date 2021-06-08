@@ -8,6 +8,10 @@ public class Consumes {
 	
 	private List<String> consumeType;
 	
+	public Consumes() {
+		super();
+	}
+
 	public Consumes(List<String> consumeType) {
 		super();
 		this.consumeType = consumeType;

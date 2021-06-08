@@ -6,6 +6,10 @@ public class Parameters {
 	
 	private List<Parameter> parameter ;
 
+	public Parameters() {
+		super();
+	}
+
 	public Parameters(List<Parameter> parameter) {
 		super();
 		this.parameter = parameter;

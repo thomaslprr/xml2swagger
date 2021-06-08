@@ -6,6 +6,10 @@ public class Values {
 
 	private List<String> value;
 
+	public Values() {
+		super();
+	}
+
 	public Values(List<String> value) {
 		super();
 		this.value = value;

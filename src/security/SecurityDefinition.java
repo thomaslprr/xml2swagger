@@ -13,6 +13,9 @@ public class SecurityDefinition {
 	private String tokenUrl;
 	private Scopes scopes;
 
+	public SecurityDefinition() {
+		super();
+	}
 	public SecurityDefinition(String securityName, String type, String description, String headerName, String in,
 			String flow, String authorizationUrl, String tokenUrl, Scopes scopes) {
 		super();

@@ -8,6 +8,10 @@ public class Produces {
 	
 	private List<String> produceType;
 	
+	public Produces() {
+		super();
+	}
+
 	public Produces(List<String> produceType) {
 		super();
 		this.produceType = produceType;

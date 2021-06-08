@@ -20,6 +20,10 @@ public class Rest {
 	
 	private SecurityDefinitions securityDefinitions;
 	
+	public Rest() {
+		super();
+	}
+
 	public Rest(Info info, String basePath, String host, TagsDetailled tags, Paths paths, Schemes schemes,
 			SecurityDefinitions securityDefinitions) {
 		super();
