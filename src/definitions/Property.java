@@ -18,6 +18,15 @@ public class Property {
 	private String description;
 	
 	private boolean required;
+	
+	private int minimum;
+	private int maximum;
+	private boolean exclusiveMaximum;
+	private boolean exclusiveMinimum;
+	private int maxLength;
+	private int minLength;
+	private int maxItems;	
+	private boolean	uniqueItems;
 
 
 	@XmlElement(name = "name")
@@ -86,6 +95,72 @@ public class Property {
 	public void setRequired(boolean required) {
 		this.required = required;
 	}
+
+	public int getMinimum() {
+		return minimum;
+	}
+
+	public void setMinimum(int minimum) {
+		this.minimum = minimum;
+	}
+
+	public int getMaximum() {
+		return maximum;
+	}
+
+	public void setMaximum(int maximum) {
+		this.maximum = maximum;
+	}
+
+	public boolean isExclusiveMaximum() {
+		return exclusiveMaximum;
+	}
+
+	public void setExclusiveMaximum(boolean exclusiveMaximum) {
+		this.exclusiveMaximum = exclusiveMaximum;
+	}
+
+	public boolean isExclusiveMinimum() {
+		return exclusiveMinimum;
+	}
+
+	public void setExclusiveMinimum(boolean exclusiveMinimum) {
+		this.exclusiveMinimum = exclusiveMinimum;
+	}
+
+	public int getMaxLength() {
+		return maxLength;
+	}
+
+	public void setMaxLength(int maxLength) {
+		this.maxLength = maxLength;
+	}
+
+	public int getMinLength() {
+		return minLength;
+	}
+
+	public void setMinLength(int minLength) {
+		this.minLength = minLength;
+	}
+
+	public int getMaxItems() {
+		return maxItems;
+	}
+
+	public void setMaxItems(int maxItems) {
+		this.maxItems = maxItems;
+	}
+
+	public boolean isUniqueItems() {
+		return uniqueItems;
+	}
+
+	public void setUniqueItems(boolean uniqueItems) {
+		this.uniqueItems = uniqueItems;
+	}
+	
+	
 	
 	
 	
