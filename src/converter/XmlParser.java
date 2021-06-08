@@ -138,39 +138,38 @@ public class XmlParser {
 					propertyRequired.put(property.getName());
 				}
 				
-				
+				//minimum of a property
 				if(property.getMinimum()!=0) {
 					propertyJson.put("minimum", property.getMinimum());
 				}
-				
+				//maximum of a property
 				if(property.getMaximum()!=0) {
 					propertyJson.put("maximum", property.getMaximum());
 				}
-				
+				//exclusive maximum
 				if(property.isExclusiveMaximum()) {
 					propertyJson.put("exclusiveMaximum", true);
 				}
-				
+				//exclusive minimum
 				if(property.isExclusiveMinimum()) {
 					propertyJson.put("exclusiveMinimum", true);
 				}
-				
+				//unique items of a property
 				if(property.isUniqueItems()) {
 					propertyJson.put("uniqueItems", true);
 				}
-				
+				//maximum length of a property
 				if(property.getMaxLength()!=0) {
 					propertyJson.put("maxLength", property.getMaxLength());
 				}
-				
+				//minimum length of a property
 				if(property.getMinLength()!=0) {
 					propertyJson.put("minLength", property.getMinLength());
 				}
-				
+				//maximum items of a property
 				if(property.getMaxItems()!=0) {
 					propertyJson.put("maxItems", property.getMaxItems());
-				}
-				
+				}		
 				
 				if(property.getType().equals("array")) {
 					JSONObject arrayJson = new JSONObject();
@@ -550,7 +549,7 @@ public class XmlParser {
 					}
 
 					/**
-					 * Todo: securise input and null value (required or not)
+					 * Items object of a parameter with type = array
 					 */
 					if(param.getType()!=null && param.getType().equals("array")) {
 						
@@ -581,7 +580,7 @@ public class XmlParser {
 				}
 				method.put("parameters", parametersJson);
 				
-				
+				//method deprecated management
 				if(m.isDeprecated()) {
 					method.put("deprecated", true);
 				}
@@ -628,7 +627,7 @@ public class XmlParser {
 					//schema response management
 					if(r.getSchema()!=null) {
 						JSONObject schemaJson = new JSONObject();
-
+						//if response schema of type array
 						if(r.getSchema().getType()!=null && r.getSchema().getType().equals("array")){
 							if(r.getSchema().getItems().getRef()==null) {
 								throw new Exception("You must have a <ref> tag in Items object");
@@ -640,13 +639,17 @@ public class XmlParser {
 							description.put("schema", schemaJson);
 							
 							
-						}else if(r.getSchema().getType()==null) {
+						}
+						//if response schema type is null
+						else if(r.getSchema().getType()==null) {
 							if(r.getSchema().getRef()==null) {
 								throw new Exception("You must have a <ref> tag in Schema object");
 							}
 							schemaJson.put("$ref","#/definitions/"+r.getSchema().getRef() );
 							description.put("schema", schemaJson);
-						}else if(r.getSchema().getType()!=null) {
+						}
+						//if response schema type is not null
+						else if(r.getSchema().getType()!=null) {
 							
 							String typeSchema="";
 							String formatSchema="";
