@@ -11,7 +11,7 @@ This project allows you to convert an XML file into OpenAPI 2.0 (Swagger 2.0) do
 
 There are two ways to use the module depending on your needs.
 
-**In any case, you will need to download the ".jar" file:** [**swagger2xml.jar**](https://github.com/thomaslprr/xml2swagger/releases/download/v1.0-beta/xml2swagger.jar)
+**In any case, you will need to download the ".jar" file:** [**swagger2xml.jar**](https://github.com/thomaslprr/xml2swagger/releases/download/v2.0-beta/xml2swagger.jar)
 
 **Use the module via the command prompt:** 
 
@@ -51,6 +51,7 @@ Then you will benefit from four methods :
 | `XmlParser.xmlStringToSwaggerJson(String xml);`  | Convert xml string into swagger Json  | 
 | `XmlParser.xmlFileToJavaClass(File file)`| Convert xml file into Java class  | 
 |  `XmlParser.xmlStringToJavaClass(String xml)` | Convert xml string into Java class  | 
+|  `XmlParser.javaClassToSwaggerJson(Global globalObject)` | Convert a Global object into a swagger json documentation  | 
 
 The Java class conversion methods are there to increase the development possibilities for people using the module and to offer export methods in YAML instead of Json or the generation of PDF, HTML, etc. 
 
