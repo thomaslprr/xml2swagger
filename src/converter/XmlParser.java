@@ -3,8 +3,10 @@ package converter;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -65,18 +67,18 @@ public class XmlParser {
 		
 		//Objects definition 
 		
-		JSONObject swaggerJson = new JSONObject();
+		JSONObject swaggerJson =  sortingJsonObject();
 		
 		if(global.getObjects()!=null && global.getObjects().getObject()!=null) {
-		JSONObject definitions = new JSONObject();
+		JSONObject definitions = sortingJsonObject();
 		for(Object object : global.getObjects().getObject()) {
 			
 			if(object.getName()==null || object.getName().trim().equals("")) {
 				throw new NameObjectException(object.getName());
 			}
 						
-			JSONObject properties = new JSONObject();
-			JSONObject propertiesJson = new JSONObject();
+			JSONObject properties = sortingJsonObject();
+			JSONObject propertiesJson = sortingJsonObject();
 			
 			propertiesJson.put("type", "object");
 
@@ -93,7 +95,7 @@ public class XmlParser {
 				}
 				
 				
-				JSONObject propertyJson = new JSONObject();
+				JSONObject propertyJson = sortingJsonObject();
 				if(property.getRef()!=null && !property.getRef().equals("")) {
 					propertyJson.put("$ref","#/definitions/"+property.getRef());
 				}else {
@@ -172,7 +174,7 @@ public class XmlParser {
 				}		
 				
 				if(property.getType().equals("array")) {
-					JSONObject arrayJson = new JSONObject();
+					JSONObject arrayJson = sortingJsonObject();
 					if(property.getItems()==null) {
 						throw new Exception("If property type is equals to \"array\", you should have a <items> tag.");
 					}
@@ -240,7 +242,7 @@ public class XmlParser {
 		 */
 		
 		//general informations
-		JSONObject infoJson = new JSONObject();
+		JSONObject infoJson = sortingJsonObject();
 		
 		if(global.getRest().getInfo().getDescription()!=null) {
 			infoJson.put("description", global.getRest().getInfo().getDescription());
@@ -252,7 +254,7 @@ public class XmlParser {
 		}
 		
 		//contact informations
-		JSONObject contactJson = new JSONObject();
+		JSONObject contactJson = sortingJsonObject();
 		
 		if(global.getRest().getInfo().getContactName()!=null) {
 			contactJson.put("name", global.getRest().getInfo().getContactName());
@@ -266,7 +268,7 @@ public class XmlParser {
 		}
 		
 		//license informations
-		JSONObject licenseJson = new JSONObject();
+		JSONObject licenseJson = sortingJsonObject();
 		if(global.getRest().getInfo().getLicenceName()!=null) {
 			licenseJson.put("url", global.getRest().getInfo().getLicenceUrl());
 		}
@@ -303,14 +305,14 @@ public class XmlParser {
 					
 				
 				tagsName.add(tag.getName());
-				JSONObject t = new JSONObject();
+				JSONObject t = sortingJsonObject();
 				t.put("name", tag.getName());
 				if(tag.getDescription()!=null) {
 					t.put("description", tag.getDescription());
 				}
 				
 				if(tag.getExternalDocs()!=null) {
-					JSONObject externalDocs = new JSONObject();
+					JSONObject externalDocs = sortingJsonObject();
 					if(tag.getExternalDocs().getDescription()!=null) {
 						externalDocs.put("description", tag.getExternalDocs().getDescription());
 					}
@@ -344,7 +346,7 @@ public class XmlParser {
 		/**
 		 * Paths
 		 */
-		JSONObject pathsJson = new JSONObject();
+		JSONObject pathsJson = sortingJsonObject();
 		if(global.getRest().getPaths().getPath()!=null) {
 		for(Path p : global.getRest().getPaths().getPath()) {
 			
@@ -356,7 +358,7 @@ public class XmlParser {
 				throw new Exception("You must have a <methods> tag in Path object");
 			}
 			
-			JSONObject pathJson = new JSONObject();
+			JSONObject pathJson = sortingJsonObject();
 			
 			/**
 			 * Methods management for each path
@@ -367,7 +369,7 @@ public class XmlParser {
 				
 				Validator.methodValidator(m.getType());
 				
-				JSONObject method = new JSONObject();
+				JSONObject method = sortingJsonObject();
 				
 				/**
 				 * Tags
@@ -422,7 +424,7 @@ public class XmlParser {
 					
 				for(Parameter param : m.getParameters().getParameter()) {
 					
-					JSONObject paramJson = new JSONObject();
+					JSONObject paramJson = sortingJsonObject();
 					
 					/**
 					 * verification of the presence of all mandatory tags 
@@ -479,14 +481,14 @@ public class XmlParser {
 					}
 					//schema parameter gestion
 					if(param.getSchema()!=null) {
-						JSONObject schemaJson= new JSONObject();
+						JSONObject schemaJson= sortingJsonObject();
 						if(param.getSchema().getRef()!=null) {
 							schemaJson.put("$ref","#/definitions/"+param.getSchema().getRef() );
 						}
 						
 						if(param.getSchema().getType()!=null && param.getSchema().getType().equals("array")) {
 							schemaJson.put("type", param.getSchema().getType());
-							JSONObject itemsObject = new JSONObject();
+							JSONObject itemsObject = sortingJsonObject();
 							if(param.getSchema().getItems().getRef()!=null) {
 								itemsObject.put("$ref", "#/definitions/"+param.getSchema().getItems().getRef());
 							}
@@ -557,7 +559,7 @@ public class XmlParser {
 							throw new Exception("You must have a <items> tag in the parameter object if parameter type is equal to \"array\" ");
 						}
 						
-						JSONObject itemsObject = new JSONObject();
+						JSONObject itemsObject = sortingJsonObject();
 						itemsObject.put("type", param.getItems().getType());
 						if(param.getItems().getEnums()!=null && param.getItems().getEnums().getEnum()!=null) {
 							JSONArray enumArray = new JSONArray();
@@ -607,7 +609,7 @@ public class XmlParser {
 				}
 				
 				if(m.getResponses().getResponse()!=null) {
-				JSONObject response = new JSONObject();
+				JSONObject response = sortingJsonObject();
 				for(Response r : m.getResponses().getResponse()) {
 					//checking the correct format of the response
 					Validator.isResponseValid(r.getName());
@@ -621,19 +623,19 @@ public class XmlParser {
 						throw new Exception("You must have a <description> tag in Response Object");
 					}
 					
-					JSONObject description = new JSONObject() ;
+					JSONObject description = sortingJsonObject() ;
 					description.put("description", r.getDescription());
 					
 					//schema response management
 					if(r.getSchema()!=null) {
-						JSONObject schemaJson = new JSONObject();
+						JSONObject schemaJson = sortingJsonObject();
 						//if response schema of type array
 						if(r.getSchema().getType()!=null && r.getSchema().getType().equals("array")){
 							if(r.getSchema().getItems().getRef()==null) {
 								throw new Exception("You must have a <ref> tag in Items object");
 							}
 							schemaJson.put("type", "array");
-							JSONObject refObject = new JSONObject();
+							JSONObject refObject = sortingJsonObject();
 							refObject.put("$ref", "#/definitions/"+r.getSchema().getItems().getRef());
 							schemaJson.put("items", refObject);
 							description.put("schema", schemaJson);
@@ -674,7 +676,7 @@ public class XmlParser {
 							if(r.getSchema().getType().equals("object")) {
 								
 								if(r.getSchema().getAdditionalProperties()!=null && r.getSchema().getAdditionalProperties().getType()!=null) {
-									JSONObject additionalProperties = new JSONObject();
+									JSONObject additionalProperties = sortingJsonObject();
 									String type="";
 									String format="";
 
@@ -710,7 +712,7 @@ public class XmlParser {
 				if(m.getSecurities()!=null&&m.getSecurities().getSecurity()!=null) {
 					JSONArray securities = new JSONArray();
 					for(Security security : m.getSecurities().getSecurity()) {
-						JSONObject securityJson = new JSONObject();
+						JSONObject securityJson = sortingJsonObject();
 						if(security.getName()==null) {
 							throw new Exception();
 						}
@@ -745,11 +747,11 @@ public class XmlParser {
 		
 		//security definitions 
 		if(global.getRest().getSecurityDefinitions()!=null && global.getRest().getSecurityDefinitions().getSecurityDefinition()!=null) {
-			JSONObject securityDefinitionsJson = new JSONObject();
+			JSONObject securityDefinitionsJson = sortingJsonObject();
 			
 			for(SecurityDefinition s : global.getRest().getSecurityDefinitions().getSecurityDefinition()) {
 				
-				JSONObject securityDefinitionJson = new JSONObject();
+				JSONObject securityDefinitionJson = sortingJsonObject();
 				
 				if(s.getAuthorizationUrl()!=null) {
 					securityDefinitionJson.put("authorizationUrl", s.getAuthorizationUrl());
@@ -780,7 +782,7 @@ public class XmlParser {
 				}
 				
 				if(s.getScopes()!=null&& s.getScopes().getScope()!=null) {
-					JSONObject scopesJson = new JSONObject();
+					JSONObject scopesJson = sortingJsonObject();
 					for(Scope scope : s.getScopes().getScope() ) {
 						if(scope.getDescription()==null) {
 							throw new Exception("You must have a <description> tag in Scope object.");
@@ -975,5 +977,18 @@ public class XmlParser {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private static JSONObject sortingJsonObject() {
+		JSONObject jsonObject = new JSONObject();
+	    try {
+	      Field changeMap = jsonObject.getClass().getDeclaredField("map");
+	      changeMap.setAccessible(true);
+	      changeMap.set(jsonObject, new LinkedHashMap<>());
+	      changeMap.setAccessible(false);
+	    } catch (IllegalAccessException | NoSuchFieldException e) {
+	      System.out.println(e.getMessage());
+	    }
+	    return jsonObject;
 	}
 }
