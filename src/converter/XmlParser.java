@@ -979,7 +979,16 @@ public class XmlParser {
 		}
 	}
 	
+	/**
+	 * Static method to update the JSON Object of the "json.org" library 
+	 * Instead of creating a hashmap we create a linkedhashmap
+	 * @return Return the JSONObject updated 
+	 */
 	private static JSONObject sortingJsonObject() {
+		/**
+		 * we get the constructor of the JSON Object in the library file 
+		 * and we modify it so that it uses not a hashmap but a linkedhashmap
+		 */
 		JSONObject jsonObject = new JSONObject();
 	    try {
 	      Field changeMap = jsonObject.getClass().getDeclaredField("map");
