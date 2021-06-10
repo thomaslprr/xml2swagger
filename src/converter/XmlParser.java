@@ -996,7 +996,7 @@ public class XmlParser {
 	      changeMap.set(jsonObject, new LinkedHashMap<>());
 	      changeMap.setAccessible(false);
 	    } catch (IllegalAccessException | NoSuchFieldException e) {
-	      System.out.println(e.getMessage());
+	      e.printStackTrace();
 	    }
 	    return jsonObject;
 	}
