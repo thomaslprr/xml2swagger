@@ -5,6 +5,13 @@
 
 This project allows you to convert an XML file into OpenAPI 2.0 (Swagger 2.0) documentation in JSON format. 
 
+The module also contains all the implementation of the Swagger model in Java class.
+
+You can thus :
+- convert an XML file into Swagger Java objects
+- convert XML file to Swagger Json Documentation
+- convert Swagger Java objects to Swagger Json Documentation
+
 **You can find a very detailed documentation** [**here**](https://github.com/thomaslprr/xml2swagger/wiki).
 
 ## Usage 
