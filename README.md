@@ -1,7 +1,8 @@
-#  <img src="https://github.com/thomaslprr/xml2swagger/blob/master/xml2swagger_logo.png" width="600" height="225">    
+ <h1 align="center"> <img src="https://github.com/thomaslprr/xml2swagger/blob/master/xml2swagger_logo.png" width="600" height="225">   </h1> 
 
-[![Github All Releases](https://img.shields.io/github/downloads/thomaslprr/xml2swagger/total.svg)]()
-
+<p align="center">
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/thomaslprr/xml2swagger/total?color=light%20green"> 
+</p>
 
 This project allows you to convert an XML file into OpenAPI 2.0 (Swagger 2.0) documentation in JSON format. 
 
