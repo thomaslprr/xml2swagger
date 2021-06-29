@@ -8695,12 +8695,12 @@
 		<description>The Application</description>
 		<version>1.0.0</version>
 		<title>Sample REST Application</title>
-		<contact-name>Selic</contact-name>
-		<contact-email>selic@contact.fr</contact-email>
-		<contact-url>http://selic.fr/</contact-url>
-		<licence-name>Apache 2.0 License</licence-name>
-		<licence-url>http://www.apache.org/licenses/LICENSE-2.0.html</licence-url>
-		<terms-of-service>Test</terms-of-service>
+		<contactName>Contact name</contactName>
+		<contactEmail>contact-email@contact.fr</contactEmail>
+		<contactUrl>https://contact-url.com/</contactUrl>
+		<licenceName>Apache 2.0 License</licenceName>
+		<licenceUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenceUrl>
+		<termsOfService>Test</termsOfService>
 	</info>
 	<basePath>/slc_web_balder/ws/1.0</basePath>
 	<host>api.example.com</host>
