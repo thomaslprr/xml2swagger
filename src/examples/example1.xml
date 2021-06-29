@@ -68,9 +68,9 @@
 			<description>The Application</description>
 			<version>1.0.0</version>
 			<title>Sample REST Application</title>
-			<contactName>Selic</contactName>
-			<contactEmail>selic@contact.fr</contactEmail>
-			<contactUrl>http://selic.fr/</contactUrl>
+			<contactName>Contact name</contactName>
+			<contactEmail>contact-email@contact.fr</contactEmail>
+			<contactUrl>https://contact-url.com/</contactUrl>
 			<licenceName>Apache 2.0 License</licenceName>
 			<licenceUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenceUrl>
 			<termsOfService>Test</termsOfService>
